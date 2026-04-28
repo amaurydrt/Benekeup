@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Benekeup Beauty's – Maquillage professionnel à domicile à Montréal, Sherbrooke et Granby. Bénédicte Mukandi, maquilleuse professionnelle pour occasions spéciales." />
+  <meta name="keywords" content="maquillage, maquilleuse, domicile, Montréal, Sherbrooke, Granby, beauté, mariage, événement" />
+  <title>Benekeup Beauty's | Maquillage Professionnel à Domicile</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700;900&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- AOS Animate On Scroll -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & BASE ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:      #c9857a;
+      --rose-dark: #a5635a;
+      --gold:      #c9a96e;
+      --gold-lt:   #e8d5b0;
+      --noir:      #1a1a1a;
+      --gris:      #5a5a5a;
+      --clair:     #fdf8f5;
+      --blanc:     #ffffff;
+      --ombre:     0 4px 30px rgba(0,0,0,0.12);
+      --radius:    12px;
+      --transition: 0.4s cubic-bezier(0.25,0.8,0.25,1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--clair);
+      color: var(--noir);
+      overflow-x: hidden;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a  { text-decoration: none; color: inherit; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--rose);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+      color: var(--blanc);
+      box-shadow: 0 6px 20px rgba(201,133,122,0.45);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(201,133,122,0.5);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #a07840);
+      color: var(--blanc);
+      box-shadow: 0 6px 20px rgba(201,169,110,0.45);
+    }
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(201,169,110,0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--blanc);
+      color: var(--blanc);
+    }
+    .btn-outline:hover {
+      background: var(--blanc);
+      color: var(--noir);
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+    }
+
+    #navbar.scrolled {
+      background: rgba(255,255,255,0.97);
+      padding: 0.8rem 2rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: var(--blanc);
+      transition: color 0.4s;
+    }
+    #navbar.scrolled .nav-logo { color: var(--noir); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    #navbar.scrolled .nav-links a { color: var(--noir); }
+
+    .nav-whatsapp {
+      background: #25D366;
+      color: var(--blanc) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.82rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700 !important;
+      transition: var(--transition) !important;
+      box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+    }
+    .nav-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(37,211,102,0.5); }
+    .nav-whatsapp::after { display: none !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--blanc);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    #navbar.scrolled .hamburger span { background: var(--noir); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(26,26,26,0.97);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      color: var(--blanc);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--rose); }
+
+    /* ─── HERO ───────────────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-slider {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-slide.active { opacity: 1; }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.70) 100%),
+        linear-gradient(160deg, rgba(10,5,5,0.50) 0%, rgba(80,30,25,0.30) 50%, rgba(10,5,5,0.50) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--blanc);
+      padding: 1rem 2rem;
+      max-width: 860px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(201,169,110,0.25);
+      border: 1px solid var(--gold);
+      color: var(--gold-lt);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 1s 0.3s both;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      animation: fadeUp 1s 0.6s both;
+    }
+
+    .hero-title span {
+      font-family: 'Great Vibes', cursive;
+      color: var(--gold-lt);
+      font-size: 1.3em;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto 2.2rem;
+      opacity: 0.9;
+      animation: fadeUp 1s 0.9s both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 1s 1.1s both;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeUp 1s 1.4s both;
+    }
+    .hero-scroll i { animation: bounce 2s infinite; }
+
+    /* ─── BANNER STRIP ───────────────────────────────────────────────── */
+    .banner-strip {
+      background: linear-gradient(90deg, var(--rose-dark), var(--rose), var(--gold), var(--rose), var(--rose-dark));
+      background-size: 300% 100%;
+      animation: gradientMove 6s linear infinite;
+      padding: 0.85rem 0;
+      overflow: hidden;
+    }
+
+    .strip-inner {
+      display: flex;
+      gap: 4rem;
+      white-space: nowrap;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+    }
+
+    .strip-item {
+      color: var(--blanc);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .strip-item i { color: var(--gold-lt); }
+
+    /* ─── ABOUT ──────────────────────────────────────────────────────── */
+    #about {
+      padding: 7rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-main {
+      border-radius: var(--radius);
+      height: 560px;
+      box-shadow: var(--ombre);
+      overflow: hidden;
+    }
+
+    .about-img-accent {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 200px;
+      height: 200px;
+      border-radius: var(--radius);
+      box-shadow: var(--ombre);
+      overflow: hidden;
+      border: 5px solid var(--blanc);
+    }
+
+    .about-badge {
+      position: absolute;
+      top: 2rem;
+      left: -1.5rem;
+      background: var(--blanc);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      box-shadow: var(--ombre);
+      text-align: center;
+      z-index: 2;
+    }
+    .about-badge strong { display: block; font-size: 2rem; color: var(--rose); font-family: 'Playfair Display', serif; }
+    .about-badge span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris); }
+
+    .about-text { }
+
+    .about-text p {
+      color: var(--gris);
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      font-size: 1.02rem;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .about-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+
+    .about-feature i {
+      color: var(--rose);
+      font-size: 1.1rem;
+      margin-top: 3px;
+    }
+
+    .about-feature div strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+    .about-feature div span { font-size: 0.82rem; color: var(--gris); }
+
+    .zone-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+    .zone-tag {
+      background: var(--clair);
+      border: 1px solid var(--gold-lt);
+      border-radius: 50px;
+      padding: 0.35rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gris);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .zone-tag i { color: var(--gold); }
+
+    /* ─── SERVICES ────────────────────────────────────────────────────── */
+    #services {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2c1a18 100%);
+      padding: 7rem 2rem;
+    }
+
+    .services-header {
+      text-align: center;
+      color: var(--blanc);
+      margin-bottom: 4rem;
+    }
+
+    .services-header .section-subtitle { color: var(--gold-lt); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: var(--blanc);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,133,122,0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .service-card:hover::before { opacity: 1; }
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(201,169,110,0.5);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.6rem;
+      color: var(--blanc);
+      box-shadow: 0 6px 20px rgba(201,133,122,0.4);
+      transition: transform 0.4s;
+    }
+    .service-card:hover .service-icon { transform: scale(1.1) rotate(5deg); }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+
+    .service-tag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      background: rgba(201,169,110,0.15);
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 50px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold-lt);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── STATS ───────────────────────────────────────────────────────── */
+    #stats {
+      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+      padding: 5rem 2rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .stat-item { color: var(--blanc); }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    /* ─── GALLERY ─────────────────────────────────────────────────────── */
+    #gallery {
+      padding: 7rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 280px 280px 260px;
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    /* Item 1 : grande photo portrait (col 1, lignes 1-2) */
+    .gallery-item:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+
+    /* Item 6 : photo paysage large (cols 1-2, ligne 3) */
+    .gallery-item:nth-child(6) {
+      grid-column: 1 / 3;
+      grid-row: 3;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25,0.8,0.25,1);
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      opacity: 0;
+      transition: opacity 0.4s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span {
+      color: var(--blanc);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .gallery-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    /* ─── PROCESS ─────────────────────────────────────────────────────── */
+    #process {
+      background: var(--clair);
+      padding: 7rem 2rem;
+    }
+
+    .process-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 2.2rem;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+      color: var(--blanc);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 6px 20px rgba(201,133,122,0.4);
+      transition: transform 0.3s;
+    }
+    .step:hover .step-num { transform: scale(1.1); }
+
+    .step h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+    }
+    .step p { font-size: 0.88rem; color: var(--gris); line-height: 1.65; }
+
+    /* ─── TESTIMONIALS ───────────────────────────────────────────────── */
+    #testimonials {
+      background: linear-gradient(135deg, #1a1a1a, #2c1a18);
+      padding: 7rem 2rem;
+    }
+
+    .testimonials-header {
+      text-align: center;
+      color: var(--blanc);
+      margin-bottom: 4rem;
+    }
+    .testimonials-header .section-subtitle { color: var(--gold-lt); }
+
+    .testimonials-track {
+      display: flex;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      min-width: calc(33.333% - 1.34rem);
+      color: var(--blanc);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .testimonial-card:hover {
+      border-color: rgba(201,169,110,0.5);
+      transform: translateY(-5px);
+    }
+
+    .stars {
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--blanc);
+      font-weight: 700;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .author-info strong { display: block; font-size: 0.92rem; }
+    .author-info span { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+    /* ─── CONTACT ─────────────────────────────────────────────────────── */
+    #contact {
+      padding: 7rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info { }
+    .contact-info p {
+      color: var(--gris);
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+      font-size: 1.02rem;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2rem; }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-item-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blanc);
+      font-size: 1rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(201,133,122,0.35);
+    }
+
+    .contact-item div strong { display: block; font-size: 0.78rem; color: var(--gris); text-transform: uppercase; letter-spacing: 0.05em; }
+    .contact-item div a { color: var(--noir); font-weight: 700; transition: color 0.3s; }
+    .contact-item div a:hover { color: var(--rose); }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--blanc);
+      transition: var(--transition);
+    }
+    .social-link.instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+    .social-link.facebook  { background: #1877F2; }
+    .social-link.whatsapp  { background: #25D366; }
+    .social-link:hover { transform: translateY(-4px) scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+    .contact-form {
+      background: var(--blanc);
+      border-radius: calc(var(--radius) * 1.5);
+      padding: 3rem;
+      box-shadow: var(--ombre);
+    }
+
+    .contact-form h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+    .contact-form > p {
+      font-size: 0.88rem;
+      color: var(--gris);
+      margin-bottom: 2rem;
+    }
+
+    .form-group { margin-bottom: 1.3rem; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gris); margin-bottom: 0.5rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      border: 2px solid #ece8e5;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: var(--noir);
+      background: #fafaf9;
+      transition: border-color 0.3s;
+      outline: none;
+      resize: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--rose);
+      background: var(--blanc);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .btn-form {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+      color: var(--blanc);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      text-transform: uppercase;
+    }
+    .btn-form:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(201,133,122,0.4); }
+
+    /* ─── WHATSAPP FLOAT ─────────────────────────────────────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blanc);
+      font-size: 1.7rem;
+      box-shadow: 0 6px 25px rgba(37,211,102,0.5);
+      transition: var(--transition);
+      animation: pulse 3s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.12);
+      animation: none;
+      box-shadow: 0 10px 35px rgba(37,211,102,0.6);
+    }
+
+    .whatsapp-tooltip {
+      position: absolute;
+      right: 75px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--noir);
+      color: var(--blanc);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.4rem 0.9rem;
+      border-radius: 50px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .whatsapp-float:hover .whatsapp-tooltip { opacity: 1; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────── */
+    footer {
+      background: var(--noir);
+      color: rgba(255,255,255,0.65);
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+    }
+
+    .footer-brand .logo-text {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.4rem;
+      color: var(--blanc);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p { font-size: 0.9rem; line-height: 1.75; max-width: 280px; margin-bottom: 1.5rem; }
+
+    .footer-social { display: flex; gap: 0.8rem; }
+
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--blanc);
+      background: rgba(255,255,255,0.08);
+      transition: var(--transition);
+    }
+    .footer-social a.instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+    .footer-social a.facebook  { background: #1877F2; }
+    .footer-social a.whatsapp  { background: #25D366; }
+    .footer-social a:hover { transform: translateY(-3px); }
+
+    .footer-col h4 {
+      color: var(--blanc);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 30px; height: 2px;
+      background: var(--rose);
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-links a { font-size: 0.9rem; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--blanc); }
+
+    .footer-contact { display: flex; flex-direction: column; gap: 0.8rem; }
+    .footer-contact a { font-size: 0.9rem; display: flex; align-items: center; gap: 0.6rem; transition: color 0.3s; }
+    .footer-contact a i { color: var(--rose); width: 16px; }
+    .footer-contact a:hover { color: var(--blanc); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-bottom span { color: var(--rose); }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 6px 25px rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 6px 35px rgba(37,211,102,0.8), 0 0 0 12px rgba(37,211,102,0.12); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @keyframes gradientMove {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    @keyframes countUp {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      #about  { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img-main { height: 420px; }
+      .about-img-accent { right: 0; }
+      #contact { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .testimonials-track { overflow-x: auto; padding-bottom: 1rem; }
+      .testimonial-card { min-width: 290px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px 220px 220px;
+      }
+      .gallery-item:nth-child(1) { grid-column: 1 / -1; grid-row: span 1; }
+      .gallery-item:nth-child(6) { grid-column: 1 / -1; grid-row: span 1; }
+      .process-steps::before { display: none; }
+      .about-img-accent { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .contact-form { padding: 2rem 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-btns { flex-direction: column; align-items: center; }
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(6) { grid-column: 1 !important; grid-row: span 1 !important; }
+      .gallery-item { height: 240px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-badge { left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────────────── -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Benekeup Beauty's</a>
+    <ul class="nav-links">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Portfolio</a></li>
+      <li><a href="#process">Comment ça marche</a></li>
+      <li><a href="#testimonials">Avis</a></li>
+      <li>
+        <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!%20Je%20souhaite%20réserver%20une%20séance%20de%20maquillage."
+           target="_blank" class="nav-whatsapp">
+          <i class="fab fa-whatsapp"></i> Réserver
+        </a>
+      </li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ── MOBILE MENU ─────────────────────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about"        onclick="closeMobile()">À propos</a>
+    <a href="#services"     onclick="closeMobile()">Services</a>
+    <a href="#gallery"      onclick="closeMobile()">Portfolio</a>
+    <a href="#process"      onclick="closeMobile()">Comment ça marche</a>
+    <a href="#testimonials" onclick="closeMobile()">Avis</a>
+    <a href="#contact"      onclick="closeMobile()">Contact</a>
+    <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!%20Je%20souhaite%20réserver%20une%20séance%20de%20maquillage."
+       target="_blank" style="color:#25D366; font-size:1.4rem;">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+  <!-- ── HERO ───────────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-slider">
+      <!-- Slide 1 : femme, lèvres rouges — close-up glamour -->
+      <div class="hero-slide active"
+           style="background-image:url('https://images.unsplash.com/photo-1520529277867-dbf8c5e0b340?w=1920&q=85&auto=format&fit=crop&crop=face')">
+      </div>
+      <!-- Slide 2 : femme, maquillage rose et mascara -->
+      <div class="hero-slide"
+           style="background-image:url('https://images.unsplash.com/photo-1585433405076-9626d637cc83?w=1920&q=85&auto=format&fit=crop&crop=top')">
+      </div>
+      <!-- Slide 3 : femme, rouge à lèvres rose, chemise blanche -->
+      <div class="hero-slide"
+           style="background-image:url('https://images.unsplash.com/photo-1630084775816-7abb7383ded5?w=1920&q=85&auto=format&fit=crop&crop=top')">
+      </div>
+      <!-- Slide 4 : set de pinceaux maquillage pro -->
+      <div class="hero-slide"
+           style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1920&q=85&auto=format&fit=crop')">
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag"><i class="fas fa-star"></i> Maquilleuse Professionnelle · Montréal</div>
+      <h1 class="hero-title">
+        Révélez votre<br/>
+        <span>beauté naturelle</span>
+      </h1>
+      <p class="hero-desc">
+        Maquillage à domicile pour occasions spéciales — mariages, soirées, shootings photo.
+        Un regard éblouissant, une finition irréprochable, à Montréal, Sherbrooke &amp; Granby.
+      </p>
+      <div class="hero-btns">
+        <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!%20Je%20voudrais%20réserver%20un%20maquillage."
+           target="_blank" class="btn btn-primary">
+          <i class="fab fa-whatsapp"></i> Réserver sur WhatsApp
+        </a>
+        <a href="#services" class="btn btn-outline">Découvrir les services</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      Défiler <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ── BANNER STRIP ─────────────────────────────────────────────── -->
+  <div class="banner-strip" aria-hidden="true">
+    <div class="strip-inner" id="strip">
+      <div class="strip-item"><i class="fas fa-star"></i> Maquillage à domicile</div>
+      <div class="strip-item"><i class="fas fa-ring"></i> Mariages &amp; Cérémonies</div>
+      <div class="strip-item"><i class="fas fa-camera"></i> Shooting Photo</div>
+      <div class="strip-item"><i class="fas fa-glass-cheers"></i> Soirées de gala</div>
+      <div class="strip-item"><i class="fas fa-heart"></i> Look naturel &amp; éblouissant</div>
+      <div class="strip-item"><i class="fas fa-map-marker-alt"></i> Montréal · Sherbrooke · Granby</div>
+      <div class="strip-item"><i class="fab fa-whatsapp"></i> Réservation rapide</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="strip-item"><i class="fas fa-star"></i> Maquillage à domicile</div>
+      <div class="strip-item"><i class="fas fa-ring"></i> Mariages &amp; Cérémonies</div>
+      <div class="strip-item"><i class="fas fa-camera"></i> Shooting Photo</div>
+      <div class="strip-item"><i class="fas fa-glass-cheers"></i> Soirées de gala</div>
+      <div class="strip-item"><i class="fas fa-heart"></i> Look naturel &amp; éblouissant</div>
+      <div class="strip-item"><i class="fas fa-map-marker-alt"></i> Montréal · Sherbrooke · Granby</div>
+      <div class="strip-item"><i class="fab fa-whatsapp"></i> Réservation rapide</div>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ──────────────────────────────────────────────────────── -->
+  <section id="about">
+    <div class="about-img-wrap" data-aos="fade-right" data-aos-duration="900">
+      <div class="about-img-main">
+        <!-- femme portrait avec yeux bleus — look élégant -->
+        <img src="https://images.unsplash.com/photo-1596205521983-9c372fb3d4f1?w=800&q=85&auto=format&fit=crop&crop=face,top"
+             alt="Maquilleuse professionnelle beauté" loading="lazy" />
+      </div>
+      <div class="about-img-accent">
+        <!-- rouge à lèvres rouge sur fond blanc — accessoire beauté -->
+        <img src="https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?w=400&q=85&auto=format&fit=crop"
+             alt="Rouge à lèvres professionnel" loading="lazy" />
+      </div>
+      <div class="about-badge">
+        <strong>100%</strong>
+        <span>Satisfaction<br/>garantie</span>
+      </div>
+    </div>
+    <div class="about-text" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+      <span class="section-subtitle">Mon histoire</span>
+      <h2 class="section-title">Bénédicte Mukandi,<br/>Maquilleuse passionnée</h2>
+      <p style="margin-top:1.5rem;">
+        Bonjour, je suis Bénédicte, maquilleuse professionnelle basée au Québec.
+        Ma passion pour la beauté et le maquillage m'a conduite à développer une expertise
+        pour sublimer chaque visage dans son unicité, en mettant en valeur les traits naturels
+        avec élégance et précision.
+      </p>
+      <p>
+        Je me déplace directement à votre domicile ou sur les lieux de votre événement,
+        pour que vous puissiez vous détendre et vivre pleinement chaque moment important
+        de votre vie. Chaque prestation est personnalisée selon votre style et vos désirs.
+      </p>
+      <div class="about-features">
+        <div class="about-feature">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Produits haut de gamme</strong>
+            <span>Marques professionnelles longue tenue</span>
+          </div>
+        </div>
+        <div class="about-feature">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Service à domicile</strong>
+            <span>Je me déplace chez vous</span>
+          </div>
+        </div>
+        <div class="about-feature">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Mariage &amp; événements</strong>
+            <span>Toutes occasions spéciales</span>
+          </div>
+        </div>
+        <div class="about-feature">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Look personnalisé</strong>
+            <span>Naturel, glamour, smoky…</span>
+          </div>
+        </div>
+      </div>
+      <div class="zone-tags">
+        <span class="zone-tag"><i class="fas fa-map-marker-alt"></i> Montréal</span>
+        <span class="zone-tag"><i class="fas fa-map-marker-alt"></i> Sherbrooke</span>
+        <span class="zone-tag"><i class="fas fa-map-marker-alt"></i> Granby</span>
+        <span class="zone-tag"><i class="fas fa-map-marker-alt"></i> Environs</span>
+      </div>
+      <div style="margin-top:2.5rem;">
+        <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!"
+           target="_blank" class="btn btn-primary">
+          <i class="fab fa-whatsapp"></i> Me contacter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ───────────────────────────────────────────────────── -->
+  <section id="services">
+    <div class="services-header" data-aos="fade-up">
+      <span class="section-subtitle">Ce que je propose</span>
+      <h2 class="section-title" style="color:#fff;">Mes Services</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-icon"><i class="fas fa-ring"></i></div>
+        <h3>Maquillage Mariage</h3>
+        <p>Look de mariée inoubliable, longue tenue garantie pour votre grand jour. Essayage inclus.</p>
+        <span class="service-tag">Essayage disponible</span>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-icon"><i class="fas fa-glass-cheers"></i></div>
+        <h3>Soirée &amp; Événement</h3>
+        <p>Sublimez votre look pour galas, anniversaires, remises de diplômes et toutes occasions festives.</p>
+        <span class="service-tag">Toutes occasions</span>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-icon"><i class="fas fa-camera-retro"></i></div>
+        <h3>Shooting Photo</h3>
+        <p>Maquillage conçu pour résister aux éclairages professionnels et sublimer vos photos.</p>
+        <span class="service-tag">Photo &amp; Vidéo</span>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-icon"><i class="fas fa-leaf"></i></div>
+        <h3>Look Naturel</h3>
+        <p>Maquillage léger qui révèle votre beauté naturelle avec une finition fraîche et lumineuse.</p>
+        <span class="service-tag">Quotidien</span>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="service-icon"><i class="fas fa-star"></i></div>
+        <h3>Maquillage Glamour</h3>
+        <p>Look audacieux et sophistiqué, pour briller sous les projecteurs et marquer les esprits.</p>
+        <span class="service-tag">Soirée VIP</span>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="service-icon"><i class="fas fa-users"></i></div>
+        <h3>Forfait Groupe</h3>
+        <p>Service complet pour mariées + demoiselles d'honneur, famille ou groupe d'amies. Tarifs avantageux.</p>
+        <span class="service-tag">À partir de 2 personnes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ──────────────────────────────────────────────────────── -->
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="0">
+        <strong class="stat-number counter" data-target="250">0</strong>
+        <span class="stat-label">Clientes satisfaites</span>
+      </div>
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+        <strong class="stat-number counter" data-target="5">0</strong>
+        <span class="stat-label">Ans d'expérience</span>
+      </div>
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+        <strong class="stat-number counter" data-target="3">0</strong>
+        <span class="stat-label">Villes desservies</span>
+      </div>
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+        <strong class="stat-number" style="font-size:3rem;">⭐ 5</strong>
+        <span class="stat-label">Avis clients</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GALLERY ────────────────────────────────────────────────────── -->
+  <section id="gallery">
+    <div class="gallery-header" data-aos="fade-up">
+      <span class="section-subtitle">Mon travail</span>
+      <h2 class="section-title">Portfolio</h2>
+      <p style="color:#5a5a5a;max-width:500px;margin:1rem auto 0;font-size:0.95rem;line-height:1.7;">
+        Chaque visage est une toile unique. Voici quelques-uns de mes looks préférés.
+      </p>
+    </div>
+    <div class="gallery-grid">
+
+      <!-- 1 — Grand portrait (col 1, lignes 1-2) : femme lèvres rouges -->
+      <div class="gallery-item" data-aos="fade-right" data-aos-delay="0">
+        <img src="https://images.unsplash.com/photo-1520529277867-dbf8c5e0b340?w=700&h=580&fit=crop&q=85&auto=format&crop=face,top"
+             alt="Femme maquillage lèvres rouges glamour" loading="lazy" />
+        <div class="gallery-overlay"><span>Look Glamour</span></div>
+      </div>
+
+      <!-- 2 — Top centre : rouge à lèvres rouge sur fond blanc -->
+      <div class="gallery-item" data-aos="fade-down" data-aos-delay="100">
+        <img src="https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?w=600&h=280&fit=crop&q=85&auto=format"
+             alt="Rouge à lèvres rouge produit beauté" loading="lazy" />
+        <div class="gallery-overlay"><span>Rouge à Lèvres</span></div>
+      </div>
+
+      <!-- 3 — Top droite : pinceaux de maquillage sur table blanche -->
+      <div class="gallery-item" data-aos="fade-down" data-aos-delay="180">
+        <img src="https://images.unsplash.com/photo-1608979048467-6194dabc6a3d?w=600&h=280&fit=crop&q=85&auto=format"
+             alt="Pinceaux maquillage professionnels" loading="lazy" />
+        <div class="gallery-overlay"><span>Pinceaux Pro</span></div>
+      </div>
+
+      <!-- 4 — Centre milieu : boîte palette maquillage -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://images.unsplash.com/photo-1511923199659-1c16881689de?w=600&h=280&fit=crop&q=85&auto=format"
+             alt="Palette maquillage professionnelle" loading="lazy" />
+        <div class="gallery-overlay"><span>Palette</span></div>
+      </div>
+
+      <!-- 5 — Droite milieu : collection 5 rouges à lèvres colorés -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="180">
+        <img src="https://images.unsplash.com/photo-1571646034647-52e6ea84b28c?w=600&h=280&fit=crop&q=85&auto=format"
+             alt="Collection rouges à lèvres colorés" loading="lazy" />
+        <div class="gallery-overlay"><span>Collection Lèvres</span></div>
+      </div>
+
+      <!-- 6 — Large paysage (cols 1-2, ligne 3) : assortiment cosmétiques close-up -->
+      <div class="gallery-item" data-aos="fade-right" data-aos-delay="200">
+        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=900&h=260&fit=crop&q=85&auto=format"
+             alt="Assortiment cosmétiques et accessoires maquillage" loading="lazy" />
+        <div class="gallery-overlay"><span>Cosmétiques &amp; Accessoires</span></div>
+      </div>
+
+      <!-- 7 — Bas droite : femme maquillage rose mascara -->
+      <div class="gallery-item" data-aos="fade-left" data-aos-delay="200">
+        <img src="https://images.unsplash.com/photo-1585433405076-9626d637cc83?w=600&h=260&fit=crop&q=85&auto=format&crop=top"
+             alt="Femme look naturel rose et mascara" loading="lazy" />
+        <div class="gallery-overlay"><span>Look Naturel</span></div>
+      </div>
+
+    </div>
+    <div class="gallery-cta" data-aos="fade-up">
+      <p style="color:#5a5a5a;margin-bottom:1.5rem;">Découvrez plus de créations sur Instagram</p>
+      <a href="https://www.instagram.com/" target="_blank" class="btn btn-primary">
+        <i class="fab fa-instagram"></i> Voir sur Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ────────────────────────────────────────────────────── -->
+  <section id="process">
+    <div class="process-header" data-aos="fade-up">
+      <span class="section-subtitle">Simple &amp; rapide</span>
+      <h2 class="section-title">Comment ça marche</h2>
+    </div>
+    <div class="process-steps">
+      <div class="step" data-aos="fade-up" data-aos-delay="0">
+        <div class="step-num">01</div>
+        <h3>Contactez-moi</h3>
+        <p>Envoyez-moi un message sur WhatsApp ou par email pour me décrire votre projet et vos attentes.</p>
+      </div>
+      <div class="step" data-aos="fade-up" data-aos-delay="150">
+        <div class="step-num">02</div>
+        <h3>On planifie</h3>
+        <p>Nous convenons ensemble d'une date, d'un lieu et du type de look qui vous correspond.</p>
+      </div>
+      <div class="step" data-aos="fade-up" data-aos-delay="300">
+        <div class="step-num">03</div>
+        <h3>Je me déplace</h3>
+        <p>Je viens directement à votre domicile ou sur place avec tout mon matériel professionnel.</p>
+      </div>
+      <div class="step" data-aos="fade-up" data-aos-delay="450">
+        <div class="step-num">04</div>
+        <h3>Brillez !</h3>
+        <p>Vous repartez magnifique, avec un maquillage longue tenue adapté à votre occasion.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3.5rem;" data-aos="fade-up">
+      <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!%20Je%20voudrais%20réserver%20une%20séance."
+         target="_blank" class="btn btn-gold">
+        <i class="fab fa-whatsapp"></i> Commencer ma réservation
+      </a>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────────────────────────── -->
+  <section id="testimonials">
+    <div class="testimonials-header" data-aos="fade-up">
+      <span class="section-subtitle">Ce qu'elles disent</span>
+      <h2 class="section-title" style="color:#fff;">Avis de mes clientes</h2>
+    </div>
+    <div class="testimonials-track" data-aos="fade-up" data-aos-delay="200">
+      <div class="testimonial-card">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">
+          "Bénédicte est incroyable ! Elle a sublimé mon look pour mon mariage. Le maquillage a tenu toute la journée malgré mes larmes de joie. Je la recommande à 100% !"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div class="author-info">
+            <strong>Sarah M.</strong>
+            <span>Mariée — Montréal</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">
+          "Service impeccable et professionnel. Bénédicte est venue directement chez moi avant ma soirée de gala. Un look parfait, exactement ce que je voulais !"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info">
+            <strong>Amina K.</strong>
+            <span>Soirée Gala — Sherbrooke</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">
+          "Pour mon shooting photo, Bénédicte a créé un maquillage parfait pour la lumière. Les photos sont magnifiques, je suis très satisfaite du résultat !"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">C</div>
+          <div class="author-info">
+            <strong>Clara D.</strong>
+            <span>Shooting Photo — Granby</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ────────────────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="contact-info" data-aos="fade-right">
+      <span class="section-subtitle">Parlons ensemble</span>
+      <h2 class="section-title">Contactez-moi</h2>
+      <p style="margin-top:1.5rem;">
+        Prête à vous laisser sublimer ? Contactez-moi directement sur WhatsApp
+        pour un devis rapide ou pour toute question. Je vous réponds dans les plus brefs délais !
+      </p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
+          <div>
+            <strong>WhatsApp</strong>
+            <a href="https://wa.me/15794206074" target="_blank">+1 (579) 420-6074</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <strong>Téléphone</strong>
+            <a href="tel:+15794206074">+1 (579) 420-6074</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <strong>Email</strong>
+            <a href="mailto:mukandibenedicte7@gmail.com">mukandibenedicte7@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <strong>Zones desservies</strong>
+            <a>Montréal · Sherbrooke · Granby et environs</a>
+          </div>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://www.instagram.com/" target="_blank" class="social-link instagram" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" class="social-link facebook" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://wa.me/15794206074" target="_blank" class="social-link whatsapp" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form" data-aos="fade-left" data-aos-delay="150">
+      <h3>Demande de réservation</h3>
+      <p>Remplissez le formulaire et je vous contacterai rapidement.</p>
+      <form id="bookingForm" onsubmit="sendWhatsApp(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" id="firstName" placeholder="Marie" required />
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" id="lastName" placeholder="Dupont" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Téléphone / WhatsApp</label>
+          <input type="tel" id="phone" placeholder="+1 514 000-0000" required />
+        </div>
+        <div class="form-group">
+          <label>Type de prestation</label>
+          <select id="service" required>
+            <option value="">Choisissez un service...</option>
+            <option>Maquillage Mariage</option>
+            <option>Soirée &amp; Événement</option>
+            <option>Shooting Photo</option>
+            <option>Look Naturel</option>
+            <option>Maquillage Glamour</option>
+            <option>Forfait Groupe</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Date souhaitée</label>
+          <input type="date" id="date" required />
+        </div>
+        <div class="form-group">
+          <label>Message (optionnel)</label>
+          <textarea id="message" rows="3" placeholder="Décrivez votre occasion, vos envies..."></textarea>
+        </div>
+        <button type="submit" class="btn-form">
+          <i class="fab fa-whatsapp"></i> Envoyer sur WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── WHATSAPP FLOAT ─────────────────────────────────────────────── -->
+  <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!%20Je%20voudrais%20réserver%20un%20maquillage."
+     target="_blank"
+     class="whatsapp-float"
+     aria-label="Contacter sur WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Réserver sur WhatsApp</span>
+  </a>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text">Benekeup Beauty's</span>
+        <p>Maquilleuse professionnelle à domicile au Québec. Chaque prestation est pensée pour sublimer votre beauté naturelle.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/" target="_blank" class="instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/" target="_blank" class="facebook" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://wa.me/15794206074" target="_blank" class="whatsapp" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Portfolio</a></li>
+          <li><a href="#process">Réservation</a></li>
+          <li><a href="#testimonials">Avis clients</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact">
+          <a href="https://wa.me/15794206074" target="_blank">
+            <i class="fab fa-whatsapp"></i> +1 (579) 420-6074
+          </a>
+          <a href="tel:+15794206074">
+            <i class="fas fa-phone"></i> +1 (579) 420-6074
+          </a>
+          <a href="mailto:mukandibenedicte7@gmail.com">
+            <i class="fas fa-envelope"></i> mukandibenedicte7@gmail.com
+          </a>
+          <a>
+            <i class="fas fa-map-marker-alt"></i> Montréal · Sherbrooke · Granby
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span>Benekeup Beauty's</span> — Tous droits réservés. Propulsé par <span>Cognito Inc.</span></p>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ─────────────────────────────────────────────────────── -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // ── AOS Init
+    AOS.init({ once: true, offset: 80, duration: 800, easing: 'ease-out-cubic' });
+
+    // ── Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // ── Hero slider
+    const slides = document.querySelectorAll('.hero-slide');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 5000);
+
+    // ── Counter animation
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-target'));
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let count = 0;
+      const timer = setInterval(() => {
+        count = Math.min(count + step, target);
+        el.textContent = Math.floor(count) + (target >= 100 ? '+' : '');
+        if (count >= target) clearInterval(timer);
+      }, 16);
+    }
+
+    const counters = document.querySelectorAll('.counter');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => observer.observe(c));
+
+    // ── Form → WhatsApp
+    function sendWhatsApp(e) {
+      e.preventDefault();
+      const first   = document.getElementById('firstName').value;
+      const last    = document.getElementById('lastName').value;
+      const phone   = document.getElementById('phone').value;
+      const service = document.getElementById('service').value;
+      const date    = document.getElementById('date').value;
+      const msg     = document.getElementById('message').value;
+
+      const text = `Bonjour Bénédicte ! 👋%0A%0A*Demande de réservation*%0A%0A` +
+        `• Nom : ${first} ${last}%0A` +
+        `• Téléphone : ${phone}%0A` +
+        `• Service souhaité : ${service}%0A` +
+        `• Date : ${date}%0A` +
+        (msg ? `• Message : ${msg}%0A` : '') +
+        `%0AMerci !`;
+
+      window.open(`https://wa.me/15794206074?text=${text}`, '_blank');
+    }
+
+    // ── Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── Parallax hero subtitle
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      const heroContent = document.querySelector('.hero-content');
+      if (heroContent && y < window.innerHeight) {
+        heroContent.style.transform = `translateY(${y * 0.25}px)`;
+        heroContent.style.opacity = 1 - (y / window.innerHeight) * 1.2;
+      }
+    });
+  </script>
+</body>
+</html>
