@@ -659,8 +659,8 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 280px 280px 260px;
-      gap: 1rem;
+      grid-template-rows: 300px 300px 300px;
+      gap: 0.8rem;
     }
 
     .gallery-item {
@@ -670,15 +670,15 @@
       cursor: pointer;
     }
 
-    /* Item 1 : grande photo portrait (col 1, lignes 1-2) */
+    /* Item 1 : grand portrait (col 1, lignes 1-2) */
     .gallery-item:nth-child(1) {
       grid-column: 1;
       grid-row: 1 / 3;
     }
 
-    /* Item 6 : photo paysage large (cols 1-2, ligne 3) */
-    .gallery-item:nth-child(6) {
-      grid-column: 1 / 3;
+    /* Item 7 : large paysage (cols 2-3, ligne 3) */
+    .gallery-item:nth-child(7) {
+      grid-column: 2 / 4;
       grid-row: 3;
     }
 
@@ -1158,10 +1158,10 @@
       .hamburger { display: flex; }
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 220px 220px 220px 220px;
+        grid-template-rows: repeat(5, 220px);
       }
       .gallery-item:nth-child(1) { grid-column: 1 / -1; grid-row: span 1; }
-      .gallery-item:nth-child(6) { grid-column: 1 / -1; grid-row: span 1; }
+      .gallery-item:nth-child(7) { grid-column: 1 / -1; grid-row: span 1; }
       .process-steps::before { display: none; }
       .about-img-accent { display: none; }
       .footer-grid { grid-template-columns: 1fr; }
@@ -1173,7 +1173,7 @@
       .hero-btns { flex-direction: column; align-items: center; }
       .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       .gallery-item:nth-child(1),
-      .gallery-item:nth-child(6) { grid-column: 1 !important; grid-row: span 1 !important; }
+      .gallery-item:nth-child(7) { grid-column: 1 !important; grid-row: span 1 !important; }
       .gallery-item { height: 240px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .about-badge {
@@ -1443,53 +1443,52 @@
     </div>
     <div class="gallery-grid">
 
-      <!-- 1 — Grand portrait (col 1, lignes 1-2) : femme lèvres rouges -->
+      <!-- 1 — Grand portrait tall (col 1, lignes 1-2) -->
       <div class="gallery-item" data-aos="fade-right" data-aos-delay="0">
-        <img src="https://images.unsplash.com/photo-1520529277867-dbf8c5e0b340?w=700&h=580&fit=crop&q=85&auto=format&crop=face,top"
-             alt="Femme maquillage lèvres rouges glamour" loading="lazy" />
-        <div class="gallery-overlay"><span>Look Glamour</span></div>
-      </div>
-
-      <!-- 2 — Top centre : rouge à lèvres rouge sur fond blanc -->
-      <div class="gallery-item" data-aos="fade-down" data-aos-delay="100">
-        <img src="https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?w=600&h=280&fit=crop&q=85&auto=format"
-             alt="Rouge à lèvres rouge produit beauté" loading="lazy" />
-        <div class="gallery-overlay"><span>Rouge à Lèvres</span></div>
-      </div>
-
-      <!-- 3 — Top droite : pinceaux de maquillage sur table blanche -->
-      <div class="gallery-item" data-aos="fade-down" data-aos-delay="180">
-        <img src="https://images.unsplash.com/photo-1608979048467-6194dabc6a3d?w=600&h=280&fit=crop&q=85&auto=format"
-             alt="Pinceaux maquillage professionnels" loading="lazy" />
-        <div class="gallery-overlay"><span>Pinceaux Pro</span></div>
-      </div>
-
-      <!-- 4 — Centre milieu : boîte palette maquillage -->
-      <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-        <img src="https://images.unsplash.com/photo-1511923199659-1c16881689de?w=600&h=280&fit=crop&q=85&auto=format"
-             alt="Palette maquillage professionnelle" loading="lazy" />
-        <div class="gallery-overlay"><span>Palette</span></div>
-      </div>
-
-      <!-- 5 — Droite milieu : collection 5 rouges à lèvres colorés -->
-      <div class="gallery-item" data-aos="fade-up" data-aos-delay="180">
-        <img src="https://images.unsplash.com/photo-1571646034647-52e6ea84b28c?w=600&h=280&fit=crop&q=85&auto=format"
-             alt="Collection rouges à lèvres colorés" loading="lazy" />
-        <div class="gallery-overlay"><span>Collection Lèvres</span></div>
-      </div>
-
-      <!-- 6 — Large paysage (cols 1-2, ligne 3) : assortiment cosmétiques close-up -->
-      <div class="gallery-item" data-aos="fade-right" data-aos-delay="200">
-        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=900&h=260&fit=crop&q=85&auto=format"
-             alt="Assortiment cosmétiques et accessoires maquillage" loading="lazy" />
-        <div class="gallery-overlay"><span>Cosmétiques &amp; Accessoires</span></div>
-      </div>
-
-      <!-- 7 — Bas droite : femme maquillage rose mascara -->
-      <div class="gallery-item" data-aos="fade-left" data-aos-delay="200">
-        <img src="https://images.unsplash.com/photo-1585433405076-9626d637cc83?w=600&h=260&fit=crop&q=85&auto=format&crop=top"
-             alt="Femme look naturel rose et mascara" loading="lazy" />
+        <img src="makeup1.jpg" alt="Look naturel lumineux" loading="lazy" />
         <div class="gallery-overlay"><span>Look Naturel</span></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="gallery-item" data-aos="fade-down" data-aos-delay="80">
+        <img src="makeup2.jpg" alt="Maquillage cat eye élégant" loading="lazy" />
+        <div class="gallery-overlay"><span>Cat Eye Élégance</span></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="gallery-item" data-aos="fade-down" data-aos-delay="160">
+        <img src="makeup3.jpg" alt="Maquillage soirée glamour" loading="lazy" />
+        <div class="gallery-overlay"><span>Glamour Soirée</span></div>
+      </div>
+
+      <!-- 4 -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="80">
+        <img src="makeup5.jpg" alt="Maquillage smoky eye" loading="lazy" />
+        <div class="gallery-overlay"><span>Smoky Eyes</span></div>
+      </div>
+
+      <!-- 5 -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="160">
+        <img src="makeup6.jpg" alt="Look nude glowy" loading="lazy" />
+        <div class="gallery-overlay"><span>Nude &amp; Glowy</span></div>
+      </div>
+
+      <!-- 6 -->
+      <div class="gallery-item" data-aos="fade-right" data-aos-delay="100">
+        <img src="makeup7.jpg" alt="Maquillage peau ébène" loading="lazy" />
+        <div class="gallery-overlay"><span>Peau Ébène</span></div>
+      </div>
+
+      <!-- 7 — Large (cols 2-3, ligne 3) -->
+      <div class="gallery-item" data-aos="fade-left" data-aos-delay="150">
+        <img src="makeup8.jpg" alt="Maquillage highlighter glow" loading="lazy" />
+        <div class="gallery-overlay"><span>Highlight &amp; Glow</span></div>
+      </div>
+
+      <!-- 8 -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+        <img src="makeup9.jpg" alt="Maquillage teint lumineux" loading="lazy" />
+        <div class="gallery-overlay"><span>Teint Lumineux</span></div>
       </div>
 
     </div>
