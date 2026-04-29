@@ -551,6 +551,24 @@
       letter-spacing: 0.05em;
     }
 
+    .service-price {
+      display: block;
+      margin-top: 1.4rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold-lt);
+      letter-spacing: 0.02em;
+    }
+    .service-price::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: rgba(201,169,110,0.4);
+      margin: 0 auto 0.8rem;
+    }
+
     /* ─── STATS ───────────────────────────────────────────────────────── */
     #stats {
       background: linear-gradient(135deg, var(--rose), var(--rose-dark));
@@ -1298,40 +1316,32 @@
     </div>
     <div class="services-grid">
       <div class="service-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="service-icon"><i class="fas fa-ring"></i></div>
-        <h3>Maquillage Mariage</h3>
-        <p>Look de mariée inoubliable, longue tenue garantie pour votre grand jour. Essayage inclus.</p>
-        <span class="service-tag">Essayage disponible</span>
+        <div class="service-icon"><i class="fas fa-sun"></i></div>
+        <h3>Makeup de Tous les Jours</h3>
+        <p>Look frais et naturel pour votre routine quotidienne. Un teint parfait, des yeux sublimés pour briller chaque jour.</p>
+        <span class="service-price">$50</span>
+        <span class="service-tag">Look quotidien</span>
       </div>
-      <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-icon"><i class="fas fa-glass-cheers"></i></div>
-        <h3>Soirée &amp; Événement</h3>
-        <p>Sublimez votre look pour galas, anniversaires, remises de diplômes et toutes occasions festives.</p>
-        <span class="service-tag">Toutes occasions</span>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="service-icon"><i class="fas fa-moon"></i></div>
+        <h3>Smokey Eyes Élégance</h3>
+        <p>Intense et sensuel — maquillage des yeux dramatique et raffiné pour une soirée inoubliable.</p>
+        <span class="service-price">$75</span>
+        <span class="service-tag">Soirée &amp; Gala</span>
       </div>
-      <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="service-card" data-aos="fade-up" data-aos-delay="240">
         <div class="service-icon"><i class="fas fa-camera-retro"></i></div>
-        <h3>Shooting Photo</h3>
-        <p>Maquillage conçu pour résister aux éclairages professionnels et sublimer vos photos.</p>
+        <h3>Photoshoot Glow</h3>
+        <p>Maquillage saisissant sur mesure pour photos shooting. Conçu pour sublimer sous tous les éclairages professionnels.</p>
+        <span class="service-price">$100</span>
         <span class="service-tag">Photo &amp; Vidéo</span>
       </div>
-      <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="service-icon"><i class="fas fa-leaf"></i></div>
-        <h3>Look Naturel</h3>
-        <p>Maquillage léger qui révèle votre beauté naturelle avec une finition fraîche et lumineuse.</p>
-        <span class="service-tag">Quotidien</span>
-      </div>
-      <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-        <div class="service-icon"><i class="fas fa-star"></i></div>
-        <h3>Maquillage Glamour</h3>
-        <p>Look audacieux et sophistiqué, pour briller sous les projecteurs et marquer les esprits.</p>
-        <span class="service-tag">Soirée VIP</span>
-      </div>
-      <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-        <div class="service-icon"><i class="fas fa-users"></i></div>
-        <h3>Forfait Groupe</h3>
-        <p>Service complet pour mariées + demoiselles d'honneur, famille ou groupe d'amies. Tarifs avantageux.</p>
-        <span class="service-tag">À partir de 2 personnes</span>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="360">
+        <div class="service-icon"><i class="fas fa-ring"></i></div>
+        <h3>Forfait Fête Glow Up</h3>
+        <p>Mariage et autres occasions spéciales — maquillage complet, y compris contour et mise en évidence. Longue tenue garantie.</p>
+        <span class="service-price">$120</span>
+        <span class="service-tag">Mariage &amp; Événement</span>
       </div>
     </div>
   </section>
@@ -1421,7 +1431,7 @@
     </div>
     <div class="gallery-cta" data-aos="fade-up">
       <p style="color:#5a5a5a;margin-bottom:1.5rem;">Découvrez plus de créations sur Instagram</p>
-      <a href="https://www.instagram.com/" target="_blank" class="btn btn-primary">
+      <a href="https://www.instagram.com/BenedicteMJMukandi" target="_blank" class="btn btn-primary">
         <i class="fab fa-instagram"></i> Voir sur Instagram
       </a>
     </div>
@@ -1552,7 +1562,7 @@
         </div>
       </div>
       <div class="social-links">
-        <a href="https://www.instagram.com/" target="_blank" class="social-link instagram" aria-label="Instagram">
+        <a href="https://www.instagram.com/BenedicteMJMukandi" target="_blank" class="social-link instagram" aria-label="Instagram">
           <i class="fab fa-instagram"></i>
         </a>
         <a href="https://www.facebook.com/" target="_blank" class="social-link facebook" aria-label="Facebook">
@@ -1625,7 +1635,7 @@
         <span class="logo-text">Benekeup Beauty's</span>
         <p>Maquilleuse professionnelle à domicile au Québec. Chaque prestation est pensée pour sublimer votre beauté naturelle.</p>
         <div class="footer-social">
-          <a href="https://www.instagram.com/" target="_blank" class="instagram" aria-label="Instagram">
+          <a href="https://www.instagram.com/BenedicteMJMukandi" target="_blank" class="instagram" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
           </a>
           <a href="https://www.facebook.com/" target="_blank" class="facebook" aria-label="Facebook">
