@@ -411,6 +411,48 @@
 
     .about-text { }
 
+    .about-title-wrap {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .about-heading-name {
+      display: block;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3rem, 7vw, 4.8rem);
+      color: var(--rose);
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .about-heading-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0.8rem 0;
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+    .about-heading-divider::before,
+    .about-heading-divider::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: var(--gold-lt);
+    }
+
+    .about-heading-sub {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gris);
+      letter-spacing: 0.02em;
+    }
+
     .about-text p {
       color: var(--gris);
       line-height: 1.85;
@@ -1248,8 +1290,14 @@
       </div>
     </div>
     <div class="about-text" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
-      <span class="section-subtitle">Mon histoire</span>
-      <h2 class="section-title">Bénédicte Mukandi,<br/>Maquilleuse passionnée</h2>
+      <div class="about-title-wrap">
+        <span class="section-subtitle">Mon histoire</span>
+        <h2>
+          <span class="about-heading-name">Bénédicte Mukandi</span>
+          <span class="about-heading-divider"><i class="fas fa-spa"></i></span>
+          <span class="about-heading-sub">Maquilleuse passionnée</span>
+        </h2>
+      </div>
       <p style="margin-top:1.5rem;">
         Bonjour, je suis Bénédicte, maquilleuse professionnelle basée au Québec.
         Ma passion pour la beauté et le maquillage m'a conduite à développer une expertise
