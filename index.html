@@ -1165,7 +1165,13 @@
       .gallery-item:nth-child(6) { grid-column: 1 !important; grid-row: span 1 !important; }
       .gallery-item { height: 240px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-badge { left: 0; }
+      .about-badge {
+        top: auto;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+      }
     }
   </style>
 </head>
