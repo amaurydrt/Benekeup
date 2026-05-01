@@ -788,11 +788,6 @@
       grid-row: 1 / 3;
     }
 
-    /* Item 7 : large paysage (cols 2-3, ligne 3) */
-    .gallery-item:nth-child(7) {
-      grid-column: 2 / 4;
-      grid-row: 3;
-    }
 
     .gallery-item img {
       width: 100%;
@@ -1302,7 +1297,6 @@
         grid-template-rows: repeat(5, 220px);
       }
       .gallery-item:nth-child(1) { grid-column: 1 / -1; grid-row: span 1; }
-      .gallery-item:nth-child(7) { grid-column: 1 / -1; grid-row: span 1; }
       .process-steps::before { display: none; }
       .about-img-accent { display: none; }
       .footer-grid { grid-template-columns: 1fr; }
@@ -1313,8 +1307,7 @@
     @media (max-width: 480px) {
       .hero-btns { flex-direction: column; align-items: center; }
       .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-      .gallery-item:nth-child(1),
-      .gallery-item:nth-child(7) { grid-column: 1 !important; grid-row: span 1 !important; }
+      .gallery-item:nth-child(1) { grid-column: 1 !important; grid-row: span 1 !important; }
       .gallery-item { height: 240px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .about-badge {
@@ -1633,6 +1626,18 @@
       <div class="gallery-item" data-aos="fade-right" data-aos-delay="100">
         <img src="makeup7.jpg" alt="Maquillage peau ébène" loading="lazy" />
         <div class="gallery-overlay"><span>Peau Ébène</span></div>
+      </div>
+
+      <!-- 7 -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
+        <img src="makeup8.jpg" alt="Maquillage highlighter glow" loading="lazy" />
+        <div class="gallery-overlay"><span>Highlight &amp; Glow</span></div>
+      </div>
+
+      <!-- 8 -->
+      <div class="gallery-item" data-aos="fade-left" data-aos-delay="200">
+        <img src="makeup9.jpg" alt="Maquillage teint lumineux" loading="lazy" />
+        <div class="gallery-overlay"><span>Teint Lumineux</span></div>
       </div>
 
 
