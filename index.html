@@ -900,28 +900,56 @@
     }
     .testimonials-header .section-subtitle { color: var(--gold-lt); }
 
+    /* ── Carousel avis défilant ── */
+    .testimonials-carousel {
+      overflow: hidden;
+      position: relative;
+      padding: 1.5rem 0;
+      /* Fondu transparent sur les bords gauche et droit */
+      mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%);
+      -webkit-mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%);
+    }
+
     .testimonials-track {
       display: flex;
       gap: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      overflow: hidden;
+      width: max-content;
+      animation: reviewScroll 32s linear infinite;
+    }
+
+    .testimonials-track:hover {
+      animation-play-state: paused;
     }
 
     .testimonial-card {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(201,169,110,0.2);
       border-radius: var(--radius);
-      padding: 2.5rem;
-      min-width: calc(33.333% - 1.34rem);
+      padding: 2rem 2.2rem;
+      width: 360px;
       color: var(--blanc);
-      transition: var(--transition);
+      transition: transform 0.3s, border-color 0.3s, background 0.3s;
       flex-shrink: 0;
+      cursor: default;
     }
 
     .testimonial-card:hover {
-      border-color: rgba(201,169,110,0.5);
-      transform: translateY(-5px);
+      border-color: rgba(201,169,110,0.6);
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-6px);
+    }
+
+    @keyframes reviewScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .stars {
@@ -1263,8 +1291,7 @@
       #contact { grid-template-columns: 1fr; gap: 3rem; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .footer-brand { grid-column: 1 / -1; }
-      .testimonials-track { overflow-x: auto; padding-bottom: 1rem; }
-      .testimonial-card { min-width: 290px; }
+      .testimonial-card { width: 290px; }
     }
 
     @media (max-width: 768px) {
@@ -1660,45 +1687,63 @@
       <span class="section-subtitle" data-i18n="testi.subtitle">Ce qu'elles disent</span>
       <h2 class="section-title" style="color:#fff;" data-i18n="testi.title">Avis de mes clientes</h2>
     </div>
-    <div class="testimonials-track" data-aos="fade-up" data-aos-delay="200">
-      <div class="testimonial-card">
-        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p class="testimonial-text" data-i18n="t1.text">
-          "Bénédicte est incroyable ! Elle a sublimé mon look pour mon mariage. Le maquillage a tenu toute la journée malgré mes larmes de joie. Je la recommande à 100% !"
-        </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">S</div>
-          <div class="author-info">
-            <strong>Sarah M.</strong>
-            <span data-i18n="t1.location">Mariée — Montréal</span>
+    <!-- Wrapper avec fondu sur les bords -->
+    <div class="testimonials-carousel" data-aos="fade-up" data-aos-delay="200">
+      <!-- testimonials-track : les cartes sont dupliquées pour la boucle infinie -->
+      <div class="testimonials-track" id="testimonials-track">
+
+        <!-- Série 1 -->
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text" data-i18n="t1.text">"Bénédicte est incroyable ! Elle a sublimé mon look pour mon mariage. Le maquillage a tenu toute la journée malgré mes larmes de joie. Je la recommande à 100% !"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div class="author-info"><strong>Sarah M.</strong><span data-i18n="t1.location">Mariée — Montréal</span></div>
           </div>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p class="testimonial-text" data-i18n="t2.text">
-          "Service impeccable et professionnel. Bénédicte est venue directement chez moi avant ma soirée de gala. Un look parfait, exactement ce que je voulais !"
-        </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">A</div>
-          <div class="author-info">
-            <strong>Amina K.</strong>
-            <span data-i18n="t2.location">Soirée Gala — Sherbrooke</span>
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text" data-i18n="t2.text">"Service impeccable et professionnel. Bénédicte est venue directement chez moi avant ma soirée de gala. Un look parfait, exactement ce que je voulais !"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div class="author-info"><strong>Amina K.</strong><span data-i18n="t2.location">Soirée Gala — Sherbrooke</span></div>
           </div>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p class="testimonial-text" data-i18n="t3.text">
-          "Pour mon shooting photo, Bénédicte a créé un maquillage parfait pour la lumière. Les photos sont magnifiques, je suis très satisfaite du résultat !"
-        </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">C</div>
-          <div class="author-info">
-            <strong>Clara D.</strong>
-            <span data-i18n="t3.location">Shooting Photo — Granby</span>
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text" data-i18n="t3.text">"Pour mon shooting photo, Bénédicte a créé un maquillage parfait pour la lumière. Les photos sont magnifiques, je suis très satisfaite du résultat !"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">C</div>
+            <div class="author-info"><strong>Clara D.</strong><span data-i18n="t3.location">Shooting Photo — Granby</span></div>
           </div>
         </div>
+
+        <!-- Série 2 (clone pour boucle seamless) -->
+        <div class="testimonial-card" aria-hidden="true">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"Bénédicte est incroyable ! Elle a sublimé mon look pour mon mariage. Le maquillage a tenu toute la journée malgré mes larmes de joie. Je la recommande à 100% !"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div class="author-info"><strong>Sarah M.</strong><span>Mariée — Montréal</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card" aria-hidden="true">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"Service impeccable et professionnel. Bénédicte est venue directement chez moi avant ma soirée de gala. Un look parfait, exactement ce que je voulais !"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div class="author-info"><strong>Amina K.</strong><span>Soirée Gala — Sherbrooke</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card" aria-hidden="true">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"Pour mon shooting photo, Bénédicte a créé un maquillage parfait pour la lumière. Les photos sont magnifiques, je suis très satisfaite du résultat !"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">C</div>
+            <div class="author-info"><strong>Clara D.</strong><span>Shooting Photo — Granby</span></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -2219,7 +2264,9 @@
         const revs = await fetch('/api/reviews').then(r=>r.json());
         const track = document.getElementById('testimonials-track');
         if (!track || !revs.length) return;
-        track.innerHTML = revs.map(r => reviewCardDynHTML(r)).join('');
+        const cards = revs.map(r => reviewCardDynHTML(r)).join('');
+        // Dupliquer pour boucle infinie seamless
+        track.innerHTML = cards + cards;
         AOS.refresh();
       } catch(e) {}
     }
