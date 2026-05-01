@@ -588,6 +588,7 @@
       background: linear-gradient(135deg, rgba(201,133,122,0.15), transparent);
       opacity: 0;
       transition: opacity 0.4s;
+      pointer-events: none; /* ne bloque pas les clics sur les enfants */
     }
 
     .service-card:hover::before { opacity: 1; }
@@ -672,6 +673,8 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: var(--transition);
+      position: relative;
+      z-index: 2; /* au-dessus du ::before overlay */
     }
     .btn-reserve:hover {
       background: var(--gold);
@@ -1498,7 +1501,7 @@
         <p data-i18n="svc1.desc">Look frais et naturel pour votre routine quotidienne. Un teint parfait, des yeux sublimés pour briller chaque jour.</p>
         <span class="service-price">$50</span>
         <span class="service-tag" data-i18n="svc1.tag">Look quotidien</span>
-        <button class="btn-reserve" onclick="reserveService('1','Makeup de Tous les Jours')">
+        <button type="button" class="btn-reserve" onclick="reserveService('1','Makeup de Tous les Jours')">
           <i class="fab fa-whatsapp"></i> <span data-i18n="svc.reserve">Réserver ce service</span>
         </button>
       </div>
@@ -1508,7 +1511,7 @@
         <p data-i18n="svc2.desc">Intense et sensuel — maquillage des yeux dramatique et raffiné pour une soirée inoubliable.</p>
         <span class="service-price">$75</span>
         <span class="service-tag" data-i18n="svc2.tag">Soirée &amp; Gala</span>
-        <button class="btn-reserve" onclick="reserveService('2','Smokey Eyes Élégance')">
+        <button type="button" class="btn-reserve" onclick="reserveService('2','Smokey Eyes Élégance')">
           <i class="fab fa-whatsapp"></i> <span data-i18n="svc.reserve">Réserver ce service</span>
         </button>
       </div>
@@ -1518,7 +1521,7 @@
         <p data-i18n="svc3.desc">Maquillage saisissant sur mesure pour photos shooting. Conçu pour sublimer sous tous les éclairages professionnels.</p>
         <span class="service-price">$100</span>
         <span class="service-tag" data-i18n="svc3.tag">Photo &amp; Vidéo</span>
-        <button class="btn-reserve" onclick="reserveService('3','Photoshoot Glow')">
+        <button type="button" class="btn-reserve" onclick="reserveService('3','Photoshoot Glow')">
           <i class="fab fa-whatsapp"></i> <span data-i18n="svc.reserve">Réserver ce service</span>
         </button>
       </div>
@@ -1528,7 +1531,7 @@
         <p data-i18n="svc4.desc">Mariage et autres occasions spéciales — maquillage complet, y compris contour et mise en évidence. Longue tenue garantie.</p>
         <span class="service-price">$120</span>
         <span class="service-tag" data-i18n="svc4.tag">Mariage &amp; Événement</span>
-        <button class="btn-reserve" onclick="reserveService('4','Forfait Fête Glow Up')">
+        <button type="button" class="btn-reserve" onclick="reserveService('4','Forfait Fête Glow Up')">
           <i class="fab fa-whatsapp"></i> <span data-i18n="svc.reserve">Réserver ce service</span>
         </button>
       </div>
@@ -2143,6 +2146,24 @@
     // Appliquer la langue sauvegardée au chargement
     if (currentLang === 'en') applyLang('en');
 
+    // ── Réserver un service ─────────────────────────────────────────────────
+    function reserveService(id, title) {
+      const sel = document.getElementById('service');
+      if (sel) {
+        sel.value = id;
+        if (sel.selectedIndex <= 0) {
+          // fallback : chercher par texte si la valeur ne matche pas
+          Array.from(sel.options).forEach((o, i) => {
+            if (o.textContent.trim() === title) sel.selectedIndex = i;
+          });
+        }
+      }
+      const contactEl = document.getElementById('contact');
+      if (contactEl) {
+        window.scrollTo({ top: contactEl.offsetTop - 90, behavior: 'smooth' });
+      }
+    }
+
     // ── Chargement dynamique (services, galerie, avis) ─────────────────────
     const lang = () => currentLang;
 
@@ -2158,7 +2179,7 @@
           <p>${desc}</p>
           <span class="service-price">${s.price}</span>
           <span class="service-tag">${tag}</span>
-          <button class="btn-reserve" onclick="reserveService('${s.id}','${title}')">
+          <button type="button" class="btn-reserve" onclick="reserveService('${s.id}','${title}')">
             <i class="fab fa-whatsapp"></i> ${t['svc.reserve']||'Réserver ce service'}
           </button>
         </div>`;
@@ -2212,24 +2233,6 @@
         track.innerHTML = revs.map(r => reviewCardDynHTML(r)).join('');
         AOS.refresh();
       } catch(e) {}
-    }
-
-    // Réserver un service : scroll vers le formulaire + pré-sélection
-    function reserveService(id, title) {
-      const sel = document.getElementById('service');
-      if (sel) {
-        // Sélection par value (id) en priorité
-        sel.value = id;
-        // Fallback : chercher par texte
-        if (!sel.value) {
-          for (const o of sel.options) {
-            if (o.textContent.trim() === title) { o.selected = true; break; }
-          }
-        }
-      }
-      const offset = 100;
-      const target = document.getElementById('contact');
-      if (target) window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
     }
 
     loadServicesFromAPI();
