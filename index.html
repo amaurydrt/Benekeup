@@ -196,6 +196,34 @@
     .nav-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(37,211,102,0.5); }
     .nav-whatsapp::after { display: none !important; }
 
+    /* ── Bouton langue ── */
+    .lang-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: var(--blanc);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-left: 0.4rem;
+      backdrop-filter: blur(4px);
+    }
+    #navbar.scrolled .lang-btn {
+      border-color: rgba(0,0,0,0.2);
+      color: var(--noir);
+      background: rgba(0,0,0,0.05);
+    }
+    .lang-btn:hover {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: var(--blanc) !important;
+      transform: scale(1.05);
+    }
+
     /* Hamburger */
     .hamburger {
       display: none;
@@ -1210,18 +1238,19 @@
   <nav id="navbar">
     <a href="#" class="nav-logo">Benekeup Beauty's</a>
     <ul class="nav-links">
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Portfolio</a></li>
-      <li><a href="#process">Comment ça marche</a></li>
-      <li><a href="#testimonials">Avis</a></li>
+      <li><a href="#about"        data-i18n="nav.about">À propos</a></li>
+      <li><a href="#services"     data-i18n="nav.services">Services</a></li>
+      <li><a href="#gallery"      data-i18n="nav.portfolio">Portefeuille</a></li>
+      <li><a href="#process"      data-i18n="nav.process">Comment ça marche</a></li>
+      <li><a href="#testimonials" data-i18n="nav.reviews">Avis</a></li>
       <li>
         <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!%20Je%20souhaite%20réserver%20une%20séance%20de%20maquillage."
            target="_blank" class="nav-whatsapp">
-          <i class="fab fa-whatsapp"></i> Réserver
+          <i class="fab fa-whatsapp"></i> <span data-i18n="nav.book">Réserver</span>
         </a>
       </li>
     </ul>
+    <button class="lang-btn" id="langBtn" onclick="switchLang()">EN</button>
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
@@ -1229,12 +1258,12 @@
 
   <!-- ── MOBILE MENU ─────────────────────────────────────────────────── -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#about"        onclick="closeMobile()">À propos</a>
-    <a href="#services"     onclick="closeMobile()">Services</a>
-    <a href="#gallery"      onclick="closeMobile()">Portfolio</a>
-    <a href="#process"      onclick="closeMobile()">Comment ça marche</a>
-    <a href="#testimonials" onclick="closeMobile()">Avis</a>
-    <a href="#contact"      onclick="closeMobile()">Contact</a>
+    <a href="#about"        onclick="closeMobile()" data-i18n="nav.about">À propos</a>
+    <a href="#services"     onclick="closeMobile()" data-i18n="nav.services">Services</a>
+    <a href="#gallery"      onclick="closeMobile()" data-i18n="nav.portfolio">Portefeuille</a>
+    <a href="#process"      onclick="closeMobile()" data-i18n="nav.process">Comment ça marche</a>
+    <a href="#testimonials" onclick="closeMobile()" data-i18n="nav.reviews">Avis</a>
+    <a href="#contact"      onclick="closeMobile()" data-i18n="nav.contact">Contact</a>
     <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!%20Je%20souhaite%20réserver%20une%20séance%20de%20maquillage."
        target="_blank" style="color:#25D366; font-size:1.4rem;">
       <i class="fab fa-whatsapp"></i> WhatsApp
@@ -1263,21 +1292,21 @@
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-tag"><i class="fas fa-star"></i> Maquilleuse Professionnelle · Montréal</div>
+      <div class="hero-tag"><i class="fas fa-star"></i> <span data-i18n="hero.tag">Maquilleuse Professionnelle · Montréal</span></div>
       <h1 class="hero-title">
-        Révélez votre<br/>
-        <span>beauté naturelle</span>
+        <span data-i18n="hero.title1">Révélez votre</span><br/>
+        <span data-i18n="hero.title2">beauté naturelle</span>
       </h1>
-      <p class="hero-desc">
+      <p class="hero-desc" data-i18n="hero.desc">
         Maquillage à domicile pour occasions spéciales — mariages, soirées, shootings photo.
         Un regard éblouissant, une finition irréprochable, à Montréal, Sherbrooke &amp; Granby.
       </p>
       <div class="hero-btns">
         <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!%20Je%20voudrais%20réserver%20un%20maquillage."
            target="_blank" class="btn btn-primary">
-          <i class="fab fa-whatsapp"></i> Réserver sur WhatsApp
+          <i class="fab fa-whatsapp"></i> <span data-i18n="hero.btn1">Réserver sur WhatsApp</span>
         </a>
-        <a href="#services" class="btn btn-outline">Découvrir les services</a>
+        <a href="#services" class="btn btn-outline" data-i18n="hero.btn2">Découvrir les services</a>
       </div>
     </div>
     <div class="hero-scroll">
@@ -1327,20 +1356,20 @@
     </div>
     <div class="about-text" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
       <div class="about-title-wrap">
-        <span class="section-subtitle">Mon histoire</span>
+        <span class="section-subtitle" data-i18n="about.subtitle">Mon histoire</span>
         <h2>
           <span class="about-heading-name">Bénédicte Mukandi</span>
           <span class="about-heading-divider"><i class="fas fa-spa"></i></span>
-          <span class="about-heading-sub">Maquilleuse passionnée</span>
+          <span class="about-heading-sub" data-i18n="about.role">Maquilleuse passionnée</span>
         </h2>
       </div>
-      <p style="margin-top:1.5rem;">
+      <p style="margin-top:1.5rem;" data-i18n="about.p1">
         Bonjour, je suis Bénédicte, maquilleuse professionnelle basée au Québec.
         Ma passion pour la beauté et le maquillage m'a conduite à développer une expertise
         pour sublimer chaque visage dans son unicité, en mettant en valeur les traits naturels
         avec élégance et précision.
       </p>
-      <p>
+      <p data-i18n="about.p2">
         Je me déplace directement à votre domicile ou sur les lieux de votre événement,
         pour que vous puissiez vous détendre et vivre pleinement chaque moment important
         de votre vie. Chaque prestation est personnalisée selon votre style et vos désirs.
@@ -1349,29 +1378,29 @@
         <div class="about-feature">
           <i class="fas fa-check-circle"></i>
           <div>
-            <strong>Produits haut de gamme</strong>
-            <span>Marques professionnelles longue tenue</span>
+            <strong data-i18n="about.feat1.title">Produits haut de gamme</strong>
+            <span data-i18n="about.feat1.sub">Marques professionnelles longue tenue</span>
           </div>
         </div>
         <div class="about-feature">
           <i class="fas fa-check-circle"></i>
           <div>
-            <strong>Service à domicile</strong>
-            <span>Je me déplace chez vous</span>
+            <strong data-i18n="about.feat2.title">Service à domicile</strong>
+            <span data-i18n="about.feat2.sub">Je me déplace chez vous</span>
           </div>
         </div>
         <div class="about-feature">
           <i class="fas fa-check-circle"></i>
           <div>
-            <strong>Mariage &amp; événements</strong>
-            <span>Toutes occasions spéciales</span>
+            <strong data-i18n="about.feat3.title">Mariage &amp; événements</strong>
+            <span data-i18n="about.feat3.sub">Toutes occasions spéciales</span>
           </div>
         </div>
         <div class="about-feature">
           <i class="fas fa-check-circle"></i>
           <div>
-            <strong>Look personnalisé</strong>
-            <span>Naturel, glamour, smoky…</span>
+            <strong data-i18n="about.feat4.title">Look personnalisé</strong>
+            <span data-i18n="about.feat4.sub">Naturel, glamour, smoky…</span>
           </div>
         </div>
       </div>
@@ -1384,7 +1413,7 @@
       <div style="margin-top:2.5rem;">
         <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!"
            target="_blank" class="btn btn-primary">
-          <i class="fab fa-whatsapp"></i> Me contacter
+          <i class="fab fa-whatsapp"></i> <span data-i18n="about.btn">Me contacter</span>
         </a>
       </div>
     </div>
@@ -1393,37 +1422,37 @@
   <!-- ── SERVICES ───────────────────────────────────────────────────── -->
   <section id="services">
     <div class="services-header" data-aos="fade-up">
-      <span class="section-subtitle">Ce que je propose</span>
-      <h2 class="section-title" style="color:#fff;">Mes Services</h2>
+      <span class="section-subtitle" data-i18n="services.subtitle">Ce que je propose</span>
+      <h2 class="section-title" style="color:#fff;" data-i18n="services.title">Mes Services</h2>
     </div>
     <div class="services-grid">
       <div class="service-card" data-aos="fade-up" data-aos-delay="0">
         <div class="service-icon"><i class="fas fa-sun"></i></div>
-        <h3>Makeup de Tous les Jours</h3>
-        <p>Look frais et naturel pour votre routine quotidienne. Un teint parfait, des yeux sublimés pour briller chaque jour.</p>
+        <h3 data-i18n="svc1.title">Makeup de Tous les Jours</h3>
+        <p data-i18n="svc1.desc">Look frais et naturel pour votre routine quotidienne. Un teint parfait, des yeux sublimés pour briller chaque jour.</p>
         <span class="service-price">$50</span>
-        <span class="service-tag">Look quotidien</span>
+        <span class="service-tag" data-i18n="svc1.tag">Look quotidien</span>
       </div>
       <div class="service-card" data-aos="fade-up" data-aos-delay="120">
         <div class="service-icon"><i class="fas fa-moon"></i></div>
-        <h3>Smokey Eyes Élégance</h3>
-        <p>Intense et sensuel — maquillage des yeux dramatique et raffiné pour une soirée inoubliable.</p>
+        <h3 data-i18n="svc2.title">Smokey Eyes Élégance</h3>
+        <p data-i18n="svc2.desc">Intense et sensuel — maquillage des yeux dramatique et raffiné pour une soirée inoubliable.</p>
         <span class="service-price">$75</span>
-        <span class="service-tag">Soirée &amp; Gala</span>
+        <span class="service-tag" data-i18n="svc2.tag">Soirée &amp; Gala</span>
       </div>
       <div class="service-card" data-aos="fade-up" data-aos-delay="240">
         <div class="service-icon"><i class="fas fa-camera-retro"></i></div>
-        <h3>Photoshoot Glow</h3>
-        <p>Maquillage saisissant sur mesure pour photos shooting. Conçu pour sublimer sous tous les éclairages professionnels.</p>
+        <h3 data-i18n="svc3.title">Photoshoot Glow</h3>
+        <p data-i18n="svc3.desc">Maquillage saisissant sur mesure pour photos shooting. Conçu pour sublimer sous tous les éclairages professionnels.</p>
         <span class="service-price">$100</span>
-        <span class="service-tag">Photo &amp; Vidéo</span>
+        <span class="service-tag" data-i18n="svc3.tag">Photo &amp; Vidéo</span>
       </div>
       <div class="service-card" data-aos="fade-up" data-aos-delay="360">
         <div class="service-icon"><i class="fas fa-ring"></i></div>
-        <h3>Forfait Fête Glow Up</h3>
-        <p>Mariage et autres occasions spéciales — maquillage complet, y compris contour et mise en évidence. Longue tenue garantie.</p>
+        <h3 data-i18n="svc4.title">Forfait Fête Glow Up</h3>
+        <p data-i18n="svc4.desc">Mariage et autres occasions spéciales — maquillage complet, y compris contour et mise en évidence. Longue tenue garantie.</p>
         <span class="service-price">$120</span>
-        <span class="service-tag">Mariage &amp; Événement</span>
+        <span class="service-tag" data-i18n="svc4.tag">Mariage &amp; Événement</span>
       </div>
     </div>
   </section>
@@ -1433,19 +1462,19 @@
     <div class="stats-grid">
       <div class="stat-item" data-aos="zoom-in" data-aos-delay="0">
         <strong class="stat-number counter" data-target="15">0</strong>
-        <span class="stat-label">Clientes satisfaites</span>
+        <span class="stat-label" data-i18n="stat.clients">Clientes satisfaites</span>
       </div>
       <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
         <strong class="stat-number counter" data-target="1">0</strong>
-        <span class="stat-label">An d'expérience</span>
+        <span class="stat-label" data-i18n="stat.years">An d'expérience</span>
       </div>
       <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
         <strong class="stat-number counter" data-target="3">0</strong>
-        <span class="stat-label">Villes desservies</span>
+        <span class="stat-label" data-i18n="stat.cities">Villes desservies</span>
       </div>
       <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
         <strong class="stat-number" style="font-size:3rem;">⭐ 5</strong>
-        <span class="stat-label">Avis clients</span>
+        <span class="stat-label" data-i18n="stat.reviews">Avis clients</span>
       </div>
     </div>
   </section>
@@ -1453,9 +1482,9 @@
   <!-- ── GALLERY ────────────────────────────────────────────────────── -->
   <section id="gallery">
     <div class="gallery-header" data-aos="fade-up">
-      <span class="section-subtitle">Mon travail</span>
-      <h2 class="section-title">Portfolio</h2>
-      <p style="color:#5a5a5a;max-width:500px;margin:1rem auto 0;font-size:0.95rem;line-height:1.7;">
+      <span class="section-subtitle" data-i18n="gallery.subtitle">Mon travail</span>
+      <h2 class="section-title" data-i18n="gallery.title">Portfolio</h2>
+      <p style="color:#5a5a5a;max-width:500px;margin:1rem auto 0;font-size:0.95rem;line-height:1.7;" data-i18n="gallery.desc">
         Chaque visage est une toile unique. Voici quelques-uns de mes looks préférés.
       </p>
     </div>
@@ -1511,9 +1540,9 @@
 
     </div>
     <div class="gallery-cta" data-aos="fade-up">
-      <p style="color:#5a5a5a;margin-bottom:1.5rem;">Découvrez plus de créations sur Instagram</p>
+      <p style="color:#5a5a5a;margin-bottom:1.5rem;" data-i18n="gallery.cta.text">Découvrez plus de créations sur Instagram</p>
       <a href="https://www.instagram.com/benedicte_mj_mukandi?igsh=MWcwdjV0cWh5OHBrZw==" target="_blank" class="btn btn-primary">
-        <i class="fab fa-instagram"></i> Voir sur Instagram
+        <i class="fab fa-instagram"></i> <span data-i18n="gallery.cta.btn">Voir sur Instagram</span>
       </a>
     </div>
   </section>
@@ -1521,35 +1550,35 @@
   <!-- ── PROCESS ────────────────────────────────────────────────────── -->
   <section id="process">
     <div class="process-header" data-aos="fade-up">
-      <span class="section-subtitle">Simple &amp; rapide</span>
-      <h2 class="section-title">Comment ça marche</h2>
+      <span class="section-subtitle" data-i18n="process.subtitle">Simple &amp; rapide</span>
+      <h2 class="section-title" data-i18n="process.title">Comment ça marche</h2>
     </div>
     <div class="process-steps">
       <div class="step" data-aos="fade-up" data-aos-delay="0">
         <div class="step-num">01</div>
-        <h3>Contactez-moi</h3>
-        <p>Envoyez-moi un message sur WhatsApp ou par email pour me décrire votre projet et vos attentes.</p>
+        <h3 data-i18n="step1.title">Contactez-moi</h3>
+        <p data-i18n="step1.desc">Envoyez-moi un message sur WhatsApp ou par email pour me décrire votre projet et vos attentes.</p>
       </div>
       <div class="step" data-aos="fade-up" data-aos-delay="150">
         <div class="step-num">02</div>
-        <h3>On planifie</h3>
-        <p>Nous convenons ensemble d'une date, d'un lieu et du type de look qui vous correspond.</p>
+        <h3 data-i18n="step2.title">On planifie</h3>
+        <p data-i18n="step2.desc">Nous convenons ensemble d'une date, d'un lieu et du type de look qui vous correspond.</p>
       </div>
       <div class="step" data-aos="fade-up" data-aos-delay="300">
         <div class="step-num">03</div>
-        <h3>Je me déplace</h3>
-        <p>Je viens directement à votre domicile ou sur place avec tout mon matériel professionnel.</p>
+        <h3 data-i18n="step3.title">Je me déplace</h3>
+        <p data-i18n="step3.desc">Je viens directement à votre domicile ou sur place avec tout mon matériel professionnel.</p>
       </div>
       <div class="step" data-aos="fade-up" data-aos-delay="450">
         <div class="step-num">04</div>
-        <h3>Brillez !</h3>
-        <p>Vous repartez magnifique, avec un maquillage longue tenue adapté à votre occasion.</p>
+        <h3 data-i18n="step4.title">Brillez !</h3>
+        <p data-i18n="step4.desc">Vous repartez magnifique, avec un maquillage longue tenue adapté à votre occasion.</p>
       </div>
     </div>
     <div style="text-align:center;margin-top:3.5rem;" data-aos="fade-up">
       <a href="https://wa.me/15794206074?text=Bonjour%20Bénédicte!%20Je%20voudrais%20réserver%20une%20séance."
          target="_blank" class="btn btn-gold">
-        <i class="fab fa-whatsapp"></i> Commencer ma réservation
+        <i class="fab fa-whatsapp"></i> <span data-i18n="process.btn">Commencer ma réservation</span>
       </a>
     </div>
   </section>
@@ -1557,46 +1586,46 @@
   <!-- ── TESTIMONIALS ───────────────────────────────────────────────── -->
   <section id="testimonials">
     <div class="testimonials-header" data-aos="fade-up">
-      <span class="section-subtitle">Ce qu'elles disent</span>
-      <h2 class="section-title" style="color:#fff;">Avis de mes clientes</h2>
+      <span class="section-subtitle" data-i18n="testi.subtitle">Ce qu'elles disent</span>
+      <h2 class="section-title" style="color:#fff;" data-i18n="testi.title">Avis de mes clientes</h2>
     </div>
     <div class="testimonials-track" data-aos="fade-up" data-aos-delay="200">
       <div class="testimonial-card">
         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="t1.text">
           "Bénédicte est incroyable ! Elle a sublimé mon look pour mon mariage. Le maquillage a tenu toute la journée malgré mes larmes de joie. Je la recommande à 100% !"
         </p>
         <div class="testimonial-author">
           <div class="author-avatar">S</div>
           <div class="author-info">
             <strong>Sarah M.</strong>
-            <span>Mariée — Montréal</span>
+            <span data-i18n="t1.location">Mariée — Montréal</span>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="t2.text">
           "Service impeccable et professionnel. Bénédicte est venue directement chez moi avant ma soirée de gala. Un look parfait, exactement ce que je voulais !"
         </p>
         <div class="testimonial-author">
           <div class="author-avatar">A</div>
           <div class="author-info">
             <strong>Amina K.</strong>
-            <span>Soirée Gala — Sherbrooke</span>
+            <span data-i18n="t2.location">Soirée Gala — Sherbrooke</span>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="t3.text">
           "Pour mon shooting photo, Bénédicte a créé un maquillage parfait pour la lumière. Les photos sont magnifiques, je suis très satisfaite du résultat !"
         </p>
         <div class="testimonial-author">
           <div class="author-avatar">C</div>
           <div class="author-info">
             <strong>Clara D.</strong>
-            <span>Shooting Photo — Granby</span>
+            <span data-i18n="t3.location">Shooting Photo — Granby</span>
           </div>
         </div>
       </div>
@@ -1606,9 +1635,9 @@
   <!-- ── CONTACT ────────────────────────────────────────────────────── -->
   <section id="contact">
     <div class="contact-info" data-aos="fade-right">
-      <span class="section-subtitle">Parlons ensemble</span>
-      <h2 class="section-title">Contactez-moi</h2>
-      <p style="margin-top:1.5rem;">
+      <span class="section-subtitle" data-i18n="contact.subtitle">Parlons ensemble</span>
+      <h2 class="section-title" data-i18n="contact.title">Contactez-moi</h2>
+      <p style="margin-top:1.5rem;" data-i18n="contact.desc">
         Prête à vous laisser sublimer ? Contactez-moi directement sur WhatsApp
         pour un devis rapide ou pour toute question. Je vous réponds dans les plus brefs délais !
       </p>
@@ -1623,7 +1652,7 @@
         <div class="contact-item">
           <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
           <div>
-            <strong>Téléphone</strong>
+            <strong data-i18n="contact.phone.label">Téléphone</strong>
             <a href="tel:+15794206074">+1 (579) 420-6074</a>
           </div>
         </div>
@@ -1637,8 +1666,8 @@
         <div class="contact-item">
           <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
           <div>
-            <strong>Zones desservies</strong>
-            <a>Montréal · Sherbrooke · Granby et environs</a>
+            <strong data-i18n="contact.zones.label">Zones desservies</strong>
+            <a data-i18n="contact.zones.value">Montréal · Sherbrooke · Granby et environs</a>
           </div>
         </div>
       </div>
@@ -1656,45 +1685,43 @@
     </div>
 
     <div class="contact-form" data-aos="fade-left" data-aos-delay="150">
-      <h3>Demande de réservation</h3>
-      <p>Remplissez le formulaire et je vous contacterai rapidement.</p>
+      <h3 data-i18n="form.title">Demande de réservation</h3>
+      <p data-i18n="form.desc">Remplissez le formulaire et je vous contacterai rapidement.</p>
       <form id="bookingForm" onsubmit="sendWhatsApp(event)">
         <div class="form-row">
           <div class="form-group">
-            <label>Prénom</label>
-            <input type="text" id="firstName" placeholder="Marie" required />
+            <label data-i18n="form.firstname">Prénom</label>
+            <input type="text" id="firstName" placeholder="Marie" data-i18n-placeholder="form.ph.firstname" required />
           </div>
           <div class="form-group">
-            <label>Nom</label>
-            <input type="text" id="lastName" placeholder="Dupont" required />
+            <label data-i18n="form.lastname">Nom</label>
+            <input type="text" id="lastName" placeholder="Dupont" data-i18n-placeholder="form.ph.lastname" required />
           </div>
         </div>
         <div class="form-group">
-          <label>Téléphone / WhatsApp</label>
+          <label data-i18n="form.phone">Téléphone / WhatsApp</label>
           <input type="tel" id="phone" placeholder="+1 514 000-0000" required />
         </div>
         <div class="form-group">
-          <label>Type de prestation</label>
+          <label data-i18n="form.service">Type de prestation</label>
           <select id="service" required>
-            <option value="">Choisissez un service...</option>
-            <option>Maquillage Mariage</option>
-            <option>Soirée &amp; Événement</option>
-            <option>Shooting Photo</option>
-            <option>Look Naturel</option>
-            <option>Maquillage Glamour</option>
-            <option>Forfait Groupe</option>
+            <option value="" data-i18n="form.service.ph">Choisissez un service...</option>
+            <option data-i18n="svc1.title">Makeup de Tous les Jours</option>
+            <option data-i18n="svc2.title">Smokey Eyes Élégance</option>
+            <option data-i18n="svc3.title">Photoshoot Glow</option>
+            <option data-i18n="svc4.title">Forfait Fête Glow Up</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Date souhaitée</label>
+          <label data-i18n="form.date">Date souhaitée</label>
           <input type="date" id="date" required />
         </div>
         <div class="form-group">
-          <label>Message (optionnel)</label>
-          <textarea id="message" rows="3" placeholder="Décrivez votre occasion, vos envies..."></textarea>
+          <label data-i18n="form.message">Message (optionnel)</label>
+          <textarea id="message" rows="3" placeholder="Décrivez votre occasion, vos envies..." data-i18n-placeholder="form.ph.message"></textarea>
         </div>
         <button type="submit" class="btn-form">
-          <i class="fab fa-whatsapp"></i> Envoyer sur WhatsApp
+          <i class="fab fa-whatsapp"></i> <span data-i18n="form.btn">Envoyer sur WhatsApp</span>
         </button>
       </form>
     </div>
@@ -1706,7 +1733,7 @@
      class="whatsapp-float"
      aria-label="Contacter sur WhatsApp">
     <i class="fab fa-whatsapp"></i>
-    <span class="whatsapp-tooltip">Réserver sur WhatsApp</span>
+    <span class="whatsapp-tooltip" data-i18n="wa.tooltip">Réserver sur WhatsApp</span>
   </a>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────────── -->
@@ -1714,7 +1741,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="logo-text">Benekeup Beauty's</span>
-        <p>Maquilleuse professionnelle à domicile au Québec. Chaque prestation est pensée pour sublimer votre beauté naturelle.</p>
+        <p data-i18n="footer.desc">Maquilleuse professionnelle à domicile au Québec. Chaque prestation est pensée pour sublimer votre beauté naturelle.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/benedicte_mj_mukandi?igsh=MWcwdjV0cWh5OHBrZw==" target="_blank" class="instagram" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
@@ -1757,7 +1784,7 @@
     </div>
     <div class="footer-bottom">
       <img src="logob.jpg" alt="Benekeup Beauty's Logo" class="footer-logo-img" />
-      <p>© 2026 <span>Benekeup Beauty's</span> — Tous droits réservés. Propulsé par <span>Cognito Inc.</span></p>
+      <p data-i18n-html="footer.copy">© 2026 <span>Benekeup Beauty's</span> — Tous droits réservés. Propulsé par <span>Cognito Inc.</span></p>
     </div>
   </footer>
 
@@ -1852,6 +1879,137 @@
         }
       });
     });
+
+    // ── Traductions FR / EN ──────────────────────────────────────────────
+    const translations = {
+      fr: {
+        'nav.about':'À propos','nav.services':'Services','nav.portfolio':'Portefeuille',
+        'nav.process':'Comment ça marche','nav.reviews':'Avis','nav.book':'Réserver','nav.contact':'Contact',
+        'hero.tag':'Maquilleuse Professionnelle · Montréal',
+        'hero.title1':'Révélez votre','hero.title2':'beauté naturelle',
+        'hero.desc':'Maquillage à domicile pour occasions spéciales — mariages, soirées, shootings photo. Un regard éblouissant, une finition irréprochable, à Montréal, Sherbrooke & Granby.',
+        'hero.btn1':'Réserver sur WhatsApp','hero.btn2':'Découvrir les services',
+        'about.subtitle':'Mon histoire','about.role':'Maquilleuse passionnée',
+        'about.p1':"Bonjour, je suis Bénédicte, maquilleuse professionnelle basée au Québec. Ma passion pour la beauté et le maquillage m'a conduite à développer une expertise pour sublimer chaque visage dans son unicité, en mettant en valeur les traits naturels avec élégance et précision.",
+        'about.p2':"Je me déplace directement à votre domicile ou sur les lieux de votre événement, pour que vous puissiez vous détendre et vivre pleinement chaque moment important de votre vie. Chaque prestation est personnalisée selon votre style et vos désirs.",
+        'about.feat1.title':'Produits haut de gamme','about.feat1.sub':'Marques professionnelles longue tenue',
+        'about.feat2.title':'Service à domicile','about.feat2.sub':'Je me déplace chez vous',
+        'about.feat3.title':'Mariage & événements','about.feat3.sub':'Toutes occasions spéciales',
+        'about.feat4.title':'Look personnalisé','about.feat4.sub':'Naturel, glamour, smoky…',
+        'about.btn':'Me contacter',
+        'services.subtitle':'Ce que je propose','services.title':'Mes Services',
+        'svc1.title':'Makeup de Tous les Jours','svc1.desc':"Look frais et naturel pour votre routine quotidienne. Un teint parfait, des yeux sublimés pour briller chaque jour.",'svc1.tag':'Look quotidien',
+        'svc2.title':'Smokey Eyes Élégance','svc2.desc':"Intense et sensuel — maquillage des yeux dramatique et raffiné pour une soirée inoubliable.",'svc2.tag':'Soirée & Gala',
+        'svc3.title':'Photoshoot Glow','svc3.desc':"Maquillage saisissant sur mesure pour photos shooting. Conçu pour sublimer sous tous les éclairages professionnels.",'svc3.tag':'Photo & Vidéo',
+        'svc4.title':'Forfait Fête Glow Up','svc4.desc':"Mariage et autres occasions spéciales — maquillage complet, y compris contour et mise en évidence. Longue tenue garantie.",'svc4.tag':'Mariage & Événement',
+        'stat.clients':'Clientes satisfaites','stat.years':"An d'expérience",'stat.cities':'Villes desservies','stat.reviews':'Avis clients',
+        'gallery.subtitle':'Mon travail','gallery.title':'Portfolio',
+        'gallery.desc':'Chaque visage est une toile unique. Voici quelques-uns de mes looks préférés.',
+        'gallery.cta.text':'Découvrez plus de créations sur Instagram','gallery.cta.btn':'Voir sur Instagram',
+        'process.subtitle':'Simple & rapide','process.title':'Comment ça marche',
+        'step1.title':'Contactez-moi','step1.desc':"Envoyez-moi un message sur WhatsApp ou par email pour me décrire votre projet et vos attentes.",
+        'step2.title':'On planifie','step2.desc':"Nous convenons ensemble d'une date, d'un lieu et du type de look qui vous correspond.",
+        'step3.title':'Je me déplace','step3.desc':"Je viens directement à votre domicile ou sur place avec tout mon matériel professionnel.",
+        'step4.title':'Brillez !','step4.desc':"Vous repartez magnifique, avec un maquillage longue tenue adapté à votre occasion.",
+        'process.btn':'Commencer ma réservation',
+        'testi.subtitle':"Ce qu'elles disent",'testi.title':'Avis de mes clientes',
+        't1.text':'"Bénédicte est incroyable ! Elle a sublimé mon look pour mon mariage. Le maquillage a tenu toute la journée malgré mes larmes de joie. Je la recommande à 100% !"',
+        't1.location':'Mariée — Montréal',
+        't2.text':'"Service impeccable et professionnel. Bénédicte est venue directement chez moi avant ma soirée de gala. Un look parfait, exactement ce que je voulais !"',
+        't2.location':'Soirée Gala — Sherbrooke',
+        't3.text':'"Pour mon shooting photo, Bénédicte a créé un maquillage parfait pour la lumière. Les photos sont magnifiques, je suis très satisfaite du résultat !"',
+        't3.location':'Shooting Photo — Granby',
+        'contact.subtitle':'Parlons ensemble','contact.title':'Contactez-moi',
+        'contact.desc':"Prête à vous laisser sublimer ? Contactez-moi directement sur WhatsApp pour un devis rapide ou pour toute question. Je vous réponds dans les plus brefs délais !",
+        'contact.phone.label':'Téléphone','contact.zones.label':'Zones desservies','contact.zones.value':'Montréal · Sherbrooke · Granby et environs',
+        'form.title':'Demande de réservation','form.desc':'Remplissez le formulaire et je vous contacterai rapidement.',
+        'form.firstname':'Prénom','form.lastname':'Nom','form.phone':'Téléphone / WhatsApp',
+        'form.service':'Type de prestation','form.service.ph':'Choisissez un service...','form.date':'Date souhaitée',
+        'form.message':'Message (optionnel)','form.ph.message':'Décrivez votre occasion, vos envies...','form.ph.firstname':'Marie','form.ph.lastname':'Dupont',
+        'form.btn':'Envoyer sur WhatsApp',
+        'wa.tooltip':'Réserver sur WhatsApp',
+        'footer.desc':"Maquilleuse professionnelle à domicile au Québec. Chaque prestation est pensée pour sublimer votre beauté naturelle.",
+        'footer.copy':'© 2026 <span>Benekeup Beauty\'s</span> — Tous droits réservés. Propulsé par <span>Cognito Inc.</span>',
+      },
+      en: {
+        'nav.about':'About','nav.services':'Services','nav.portfolio':'Portfolio',
+        'nav.process':'How It Works','nav.reviews':'Reviews','nav.book':'Book Now','nav.contact':'Contact',
+        'hero.tag':'Professional Makeup Artist · Montréal',
+        'hero.title1':'Reveal your','hero.title2':'natural beauty',
+        'hero.desc':'Professional makeup at home for special occasions — weddings, evenings, photo shoots. A stunning look, flawless finish, in Montréal, Sherbrooke & Granby.',
+        'hero.btn1':'Book on WhatsApp','hero.btn2':'Discover services',
+        'about.subtitle':'My Story','about.role':'Passionate Makeup Artist',
+        'about.p1':"Hello, I'm Bénédicte, a professional makeup artist based in Québec. My passion for beauty and makeup has led me to develop expertise in enhancing each face in its uniqueness, highlighting natural features with elegance and precision.",
+        'about.p2':"I travel directly to your home or to your event venue, so you can relax and fully enjoy every important moment of your life. Each service is personalized according to your style and desires.",
+        'about.feat1.title':'Premium Products','about.feat1.sub':'Professional long-lasting brands',
+        'about.feat2.title':'Home Service','about.feat2.sub':'I come to you',
+        'about.feat3.title':'Weddings & events','about.feat3.sub':'All special occasions',
+        'about.feat4.title':'Personalized look','about.feat4.sub':'Natural, glamour, smoky…',
+        'about.btn':'Contact me',
+        'services.subtitle':'What I Offer','services.title':'My Services',
+        'svc1.title':'Everyday Makeup','svc1.desc':"Fresh and natural look for your daily routine. A perfect complexion, enhanced eyes to shine every day.",'svc1.tag':'Daily look',
+        'svc2.title':'Smokey Eyes Elegance','svc2.desc':"Intense and sensual — dramatic and refined eye makeup for an unforgettable evening.",'svc2.tag':'Evening & Gala',
+        'svc3.title':'Photoshoot Glow','svc3.desc':"Striking custom makeup for photo shoots. Designed to enhance under all professional lighting.",'svc3.tag':'Photo & Video',
+        'svc4.title':'Glow Up Party Package','svc4.desc':"Wedding and other special occasions — full makeup including contouring and highlighting. Long-lasting wear guaranteed.",'svc4.tag':'Wedding & Event',
+        'stat.clients':'Satisfied clients','stat.years':'Year of experience','stat.cities':'Cities served','stat.reviews':'Client reviews',
+        'gallery.subtitle':'My Work','gallery.title':'Portfolio',
+        'gallery.desc':'Every face is a unique canvas. Here are some of my favorite looks.',
+        'gallery.cta.text':'Discover more creations on Instagram','gallery.cta.btn':'See on Instagram',
+        'process.subtitle':'Simple & quick','process.title':'How it works',
+        'step1.title':'Contact me','step1.desc':"Send me a message on WhatsApp or by email to describe your project and expectations.",
+        'step2.title':'We plan','step2.desc':"We agree together on a date, location and the type of look that suits you.",
+        'step3.title':'I come to you','step3.desc':"I come directly to your home or on location with all my professional equipment.",
+        'step4.title':'Shine!','step4.desc':"You leave looking stunning, with long-lasting makeup tailored to your occasion.",
+        'process.btn':'Start my booking',
+        'testi.subtitle':'What they say','testi.title':'Client Reviews',
+        't1.text':'"Bénédicte is amazing! She transformed my look for my wedding. The makeup lasted all day despite my tears of joy. I recommend her 100%!"',
+        't1.location':'Bride — Montréal',
+        't2.text':'"Impeccable and professional service. Bénédicte came directly to my home before my gala evening. A perfect look, exactly what I wanted!"',
+        't2.location':'Gala Evening — Sherbrooke',
+        't3.text':'"For my photo shoot, Bénédicte created perfect makeup for the lighting. The photos are beautiful, I am very satisfied with the result!"',
+        't3.location':'Photo Shoot — Granby',
+        'contact.subtitle':"Let's Talk",'contact.title':'Contact Me',
+        'contact.desc':"Ready to be transformed? Contact me directly on WhatsApp for a quick quote or any question. I'll reply as soon as possible!",
+        'contact.phone.label':'Phone','contact.zones.label':'Areas served','contact.zones.value':'Montréal · Sherbrooke · Granby and surroundings',
+        'form.title':'Booking Request','form.desc':'Fill out the form and I will contact you shortly.',
+        'form.firstname':'First name','form.lastname':'Last name','form.phone':'Phone / WhatsApp',
+        'form.service':'Service type','form.service.ph':'Choose a service...','form.date':'Preferred date',
+        'form.message':'Message (optional)','form.ph.message':'Describe your occasion, your wishes...','form.ph.firstname':'Mary','form.ph.lastname':'Smith',
+        'form.btn':'Send on WhatsApp',
+        'wa.tooltip':'Book on WhatsApp',
+        'footer.desc':"Professional makeup artist at home in Québec. Every service is designed to enhance your natural beauty.",
+        'footer.copy':'© 2026 <span>Benekeup Beauty\'s</span> — All rights reserved. Powered by <span>Cognito Inc.</span>',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'fr';
+
+    function applyLang(lang) {
+      const t = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[k] !== undefined) el.textContent = t[k];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const k = el.getAttribute('data-i18n-html');
+        if (t[k] !== undefined) el.innerHTML = t[k];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const k = el.getAttribute('data-i18n-placeholder');
+        if (t[k] !== undefined) el.placeholder = t[k];
+      });
+      document.getElementById('langBtn').textContent = lang === 'fr' ? 'EN' : 'FR';
+      document.documentElement.lang = lang === 'fr' ? 'fr' : 'en';
+    }
+
+    function switchLang() {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      localStorage.setItem('lang', currentLang);
+      applyLang(currentLang);
+    }
+
+    // Appliquer la langue sauvegardée au chargement
+    if (currentLang === 'en') applyLang('en');
 
     // ── Parallax hero subtitle
     window.addEventListener('scroll', () => {
