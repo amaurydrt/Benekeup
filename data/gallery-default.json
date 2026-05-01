@@ -1,0 +1,10 @@
+[
+  {"id":"1","filename":"makeup1.jpg","label_fr":"Look Naturel","label_en":"Natural Look"},
+  {"id":"2","filename":"makeup2.jpg","label_fr":"Cat Eye Élégance","label_en":"Cat Eye Elegance"},
+  {"id":"3","filename":"makeup3.jpg","label_fr":"Glamour Soirée","label_en":"Glamour Evening"},
+  {"id":"5","filename":"makeup5.jpg","label_fr":"Smoky Eyes","label_en":"Smoky Eyes"},
+  {"id":"6","filename":"makeup6.jpg","label_fr":"Nude & Glowy","label_en":"Nude & Glowy"},
+  {"id":"7","filename":"makeup7.jpg","label_fr":"Peau Ébène","label_en":"Ebony Skin"},
+  {"id":"8","filename":"makeup8.jpg","label_fr":"Highlight & Glow","label_en":"Highlight & Glow"},
+  {"id":"9","filename":"makeup9.jpg","label_fr":"Teint Lumineux","label_en":"Luminous Complexion"}
+]

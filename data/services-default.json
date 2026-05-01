@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "icon": "fas fa-sun",
+    "title_fr": "Makeup de Tous les Jours",
+    "title_en": "Everyday Makeup",
+    "desc_fr": "Look frais et naturel pour votre routine quotidienne. Un teint parfait, des yeux sublimés pour briller chaque jour.",
+    "desc_en": "Fresh and natural look for your daily routine. A perfect complexion, enhanced eyes to shine every day.",
+    "price": "$50",
+    "tag_fr": "Look quotidien",
+    "tag_en": "Daily look"
+  },
+  {
+    "id": "2",
+    "icon": "fas fa-moon",
+    "title_fr": "Smokey Eyes Élégance",
+    "title_en": "Smokey Eyes Elegance",
+    "desc_fr": "Intense et sensuel — maquillage des yeux dramatique et raffiné pour une soirée inoubliable.",
+    "desc_en": "Intense and sensual — dramatic and refined eye makeup for an unforgettable evening.",
+    "price": "$75",
+    "tag_fr": "Soirée & Gala",
+    "tag_en": "Evening & Gala"
+  },
+  {
+    "id": "3",
+    "icon": "fas fa-camera-retro",
+    "title_fr": "Photoshoot Glow",
+    "title_en": "Photoshoot Glow",
+    "desc_fr": "Maquillage saisissant sur mesure pour photos shooting. Conçu pour sublimer sous tous les éclairages professionnels.",
+    "desc_en": "Striking custom makeup for photo shoots. Designed to enhance under all professional lighting.",
+    "price": "$100",
+    "tag_fr": "Photo & Vidéo",
+    "tag_en": "Photo & Video"
+  },
+  {
+    "id": "4",
+    "icon": "fas fa-ring",
+    "title_fr": "Forfait Fête Glow Up",
+    "title_en": "Glow Up Party Package",
+    "desc_fr": "Mariage et autres occasions spéciales — maquillage complet, y compris contour et mise en évidence. Longue tenue garantie.",
+    "desc_en": "Wedding and other special occasions — full makeup including contouring and highlighting. Long-lasting wear guaranteed.",
+    "price": "$120",
+    "tag_fr": "Mariage & Événement",
+    "tag_en": "Wedding & Event"
+  }
+]

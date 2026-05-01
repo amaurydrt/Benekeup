@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Admin — Benekeup Beauty's</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rose:#c9857a;--rose-dk:#a5635a;--gold:#c9a96e;
+  --bg:#f5f6fa;--white:#fff;--noir:#1a1a1a;--gris:#6b7280;
+  --border:#e5e7eb;--success:#10b981;--danger:#ef4444;--warn:#f59e0b;
+  --sidebar:240px;
+}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--noir);min-height:100vh}
+
+/* LOGIN */
+#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#1a1a1a,#2c1a18)}
+.login-box{background:var(--white);border-radius:16px;padding:2.5rem;width:340px;box-shadow:0 20px 60px rgba(0,0,0,.3);text-align:center}
+.login-logo{font-size:2rem;color:var(--rose);margin-bottom:.5rem}
+.login-box h1{font-size:1.4rem;margin-bottom:.3rem}
+.login-box p{color:var(--gris);font-size:.85rem;margin-bottom:1.8rem}
+.login-box input{width:100%;padding:.8rem 1rem;border:2px solid var(--border);border-radius:10px;font-size:.95rem;outline:none;transition:.2s}
+.login-box input:focus{border-color:var(--rose)}
+.login-box button{width:100%;margin-top:1rem;padding:.85rem;background:linear-gradient(135deg,var(--rose),var(--rose-dk));color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:.2s}
+.login-box button:hover{opacity:.9;transform:translateY(-1px)}
+.login-error{color:var(--danger);font-size:.82rem;margin-top:.6rem}
+
+/* LAYOUT */
+#app{display:none;min-height:100vh}
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar);height:100vh;background:#1a1a1a;display:flex;flex-direction:column;z-index:100}
+.sidebar-brand{padding:1.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.sidebar-brand .brand-logo{font-size:1.3rem;color:var(--rose);font-weight:700}
+.sidebar-brand small{color:rgba(255,255,255,.4);font-size:.72rem;display:block;margin-top:.2rem}
+.sidebar-nav{flex:1;padding:1rem 0;overflow-y:auto}
+.nav-item{display:flex;align-items:center;gap:.75rem;padding:.75rem 1.3rem;color:rgba(255,255,255,.6);cursor:pointer;transition:.2s;font-size:.88rem;border-left:3px solid transparent}
+.nav-item i{width:16px;text-align:center}
+.nav-item:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-item.active{color:#fff;background:rgba(201,133,122,.15);border-left-color:var(--rose)}
+.sidebar-footer{padding:1rem 1.3rem;border-top:1px solid rgba(255,255,255,.08)}
+.btn-logout{display:flex;align-items:center;gap:.6rem;color:rgba(255,255,255,.5);font-size:.82rem;cursor:pointer;background:none;border:none;width:100%}
+.btn-logout:hover{color:#fff}
+
+.main{margin-left:var(--sidebar);padding:2rem;min-height:100vh}
+.page{display:none}
+.page.active{display:block}
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.8rem}
+.page-title{font-size:1.4rem;font-weight:700}
+.badge-count{background:var(--rose);color:#fff;border-radius:50px;padding:.15rem .6rem;font-size:.72rem;font-weight:700;margin-left:.5rem}
+
+/* CARDS & TABLES */
+.card{background:var(--white);border-radius:12px;padding:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:1.5rem}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:1.8rem}
+.stat-card{background:var(--white);border-radius:12px;padding:1.2rem;box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center}
+.stat-card .num{font-size:2rem;font-weight:700;color:var(--rose)}
+.stat-card .lbl{font-size:.78rem;color:var(--gris);margin-top:.2rem}
+
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:.7rem 1rem;font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gris);border-bottom:2px solid var(--border)}
+td{padding:.75rem 1rem;font-size:.88rem;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:hover td{background:#fafafa}
+.actions{display:flex;gap:.5rem}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;border-radius:8px;font-size:.82rem;font-weight:700;cursor:pointer;border:none;transition:.2s}
+.btn:hover{opacity:.88;transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(135deg,var(--rose),var(--rose-dk));color:#fff}
+.btn-success{background:var(--success);color:#fff}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-warn{background:var(--warn);color:#fff}
+.btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--noir)}
+.btn-sm{padding:.35rem .7rem;font-size:.75rem}
+
+/* FORMS */
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.78rem;font-weight:700;color:var(--gris);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.04em}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;border:2px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;transition:.2s;resize:vertical}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--rose)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-backdrop.open{display:flex}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 25px 70px rgba(0,0,0,.25)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 1.5rem;border-bottom:1px solid var(--border)}
+.modal-header h3{font-size:1.1rem;font-weight:700}
+.modal-close{background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--gris);line-height:1}
+.modal-body{padding:1.5rem}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;gap:.8rem;justify-content:flex-end}
+
+/* GALLERY GRID */
+.gallery-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+.gallery-admin-item{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:#eee}
+.gallery-admin-item img{width:100%;height:100%;object-fit:cover}
+.gallery-admin-item .overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;transition:.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+.gallery-admin-item:hover .overlay{opacity:1}
+.gallery-admin-item .label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);color:#fff;font-size:.72rem;padding:.3rem .5rem;text-align:center}
+
+/* REVIEW CARDS */
+.review-card{background:#fff;border-radius:10px;border:1px solid var(--border);padding:1.2rem;margin-bottom:1rem}
+.review-card.pending{border-left:4px solid var(--warn)}
+.review-card.approved{border-left:4px solid var(--success)}
+.review-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
+.review-name{font-weight:700;font-size:.9rem}
+.review-loc{font-size:.75rem;color:var(--gris)}
+.review-text{font-size:.88rem;color:#374151;line-height:1.6;margin-bottom:.8rem}
+.stars-display{color:#f59e0b;font-size:.85rem}
+.status-badge{font-size:.7rem;font-weight:700;padding:.2rem .6rem;border-radius:50px}
+.status-badge.pending{background:#fef3c7;color:#92400e}
+.status-badge.approved{background:#d1fae5;color:#065f46}
+
+/* UPLOAD ZONE */
+.upload-zone{border:2px dashed var(--border);border-radius:10px;padding:2rem;text-align:center;cursor:pointer;transition:.2s}
+.upload-zone:hover{border-color:var(--rose);background:#fff5f4}
+.upload-zone i{font-size:2rem;color:var(--rose);margin-bottom:.5rem}
+.upload-zone p{font-size:.85rem;color:var(--gris)}
+#fileInput{display:none}
+.preview-img{width:100%;max-height:200px;object-fit:cover;border-radius:8px;margin-top:.8rem}
+
+/* ICON PICKER */
+.icon-options{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
+.icon-opt{padding:.4rem .7rem;border:2px solid var(--border);border-radius:6px;cursor:pointer;font-size:.85rem;transition:.2s}
+.icon-opt.selected{border-color:var(--rose);background:#fff5f4;color:var(--rose)}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:#1a1a1a;color:#fff;padding:.8rem 1.4rem;border-radius:10px;font-size:.85rem;z-index:999;transform:translateY(100px);opacity:0;transition:.3s}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{background:var(--success)}
+.toast.error{background:var(--danger)}
+
+@media(max-width:768px){
+  .sidebar{width:60px}
+  .sidebar-brand .brand-logo,.sidebar-brand small,.nav-item span,.sidebar-footer .btn-logout span{display:none}
+  .main{margin-left:60px;padding:1rem}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo"><i class="fas fa-spa"></i></div>
+    <h1>Benekeup Admin</h1>
+    <p>Connectez-vous pour gérer votre site</p>
+    <input type="password" id="pwdInput" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')login()"/>
+    <button onclick="login()"><i class="fas fa-sign-in-alt"></i> Se connecter</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo"><i class="fas fa-spa"></i> Benekeup</div>
+      <small>Panel Administrateur</small>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active" onclick="showPage('dashboard')">
+        <i class="fas fa-chart-pie"></i><span>Tableau de bord</span>
+      </div>
+      <div class="nav-item" onclick="showPage('services')">
+        <i class="fas fa-star"></i><span>Services</span>
+      </div>
+      <div class="nav-item" onclick="showPage('gallery')">
+        <i class="fas fa-images"></i><span>Galerie</span>
+      </div>
+      <div class="nav-item" onclick="showPage('reviews')">
+        <i class="fas fa-comments"></i><span>Avis</span>
+        <span class="badge-count" id="pendingBadge" style="display:none">0</span>
+      </div>
+      <div class="nav-item" onclick="window.open('/','-blank')">
+        <i class="fas fa-external-link-alt"></i><span>Voir le site</span>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="btn-logout" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i><span>Déconnexion</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Dashboard -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div class="page-title">Tableau de bord</div>
+      </div>
+      <div class="stats-row" id="dashStats"></div>
+      <div class="card">
+        <h3 style="margin-bottom:1rem;font-size:1rem;">Avis en attente d'approbation</h3>
+        <div id="dashPending"><p style="color:var(--gris);font-size:.88rem;">Aucun avis en attente.</p></div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="page" id="page-services">
+      <div class="page-header">
+        <div class="page-title">Gestion des Services</div>
+        <button class="btn btn-primary" onclick="openServiceModal()">
+          <i class="fas fa-plus"></i> Nouveau service
+        </button>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table>
+          <thead>
+            <tr><th>Icône</th><th>Nom (FR)</th><th>Nom (EN)</th><th>Prix</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="servicesTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="page" id="page-gallery">
+      <div class="page-header">
+        <div class="page-title">Gestion de la Galerie</div>
+        <button class="btn btn-primary" onclick="openGalleryModal()">
+          <i class="fas fa-upload"></i> Ajouter une photo
+        </button>
+      </div>
+      <div class="card">
+        <div class="gallery-admin-grid" id="galleryGrid"></div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="page" id="page-reviews">
+      <div class="page-header">
+        <div class="page-title">Gestion des Avis</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem" id="reviewsColumns">
+        <div>
+          <h3 style="font-size:.9rem;font-weight:700;margin-bottom:1rem;color:var(--warn)">
+            <i class="fas fa-clock"></i> En attente
+          </h3>
+          <div id="pendingReviews"></div>
+        </div>
+        <div>
+          <h3 style="font-size:.9rem;font-weight:700;margin-bottom:1rem;color:var(--success)">
+            <i class="fas fa-check-circle"></i> Approuvés
+          </h3>
+          <div id="approvedReviews"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Service -->
+<div class="modal-backdrop" id="serviceModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="serviceModalTitle">Nouveau service</h3>
+      <button class="modal-close" onclick="closeModal('serviceModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="svcId"/>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Titre (Français)</label>
+          <input type="text" id="svcTitleFr" placeholder="Makeup de Tous les Jours"/>
+        </div>
+        <div class="form-group">
+          <label>Titre (English)</label>
+          <input type="text" id="svcTitleEn" placeholder="Everyday Makeup"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Description (FR)</label>
+          <textarea id="svcDescFr" rows="3" placeholder="Description en français..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Description (EN)</label>
+          <textarea id="svcDescEn" rows="3" placeholder="Description in English..."></textarea>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tag (FR)</label>
+          <input type="text" id="svcTagFr" placeholder="Look quotidien"/>
+        </div>
+        <div class="form-group">
+          <label>Tag (EN)</label>
+          <input type="text" id="svcTagEn" placeholder="Daily look"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prix</label>
+          <input type="text" id="svcPrice" placeholder="$50"/>
+        </div>
+        <div class="form-group">
+          <label>Icône FontAwesome</label>
+          <input type="text" id="svcIcon" placeholder="fas fa-star"/>
+          <div class="icon-options">
+            <div class="icon-opt" onclick="pickIcon('fas fa-sun')"><i class="fas fa-sun"></i></div>
+            <div class="icon-opt" onclick="pickIcon('fas fa-moon')"><i class="fas fa-moon"></i></div>
+            <div class="icon-opt" onclick="pickIcon('fas fa-ring')"><i class="fas fa-ring"></i></div>
+            <div class="icon-opt" onclick="pickIcon('fas fa-camera-retro')"><i class="fas fa-camera-retro"></i></div>
+            <div class="icon-opt" onclick="pickIcon('fas fa-star')"><i class="fas fa-star"></i></div>
+            <div class="icon-opt" onclick="pickIcon('fas fa-heart')"><i class="fas fa-heart"></i></div>
+            <div class="icon-opt" onclick="pickIcon('fas fa-crown')"><i class="fas fa-crown"></i></div>
+            <div class="icon-opt" onclick="pickIcon('fas fa-leaf')"><i class="fas fa-leaf"></i></div>
+            <div class="icon-opt" onclick="pickIcon('fas fa-spa')"><i class="fas fa-spa"></i></div>
+            <div class="icon-opt" onclick="pickIcon('fas fa-users')"><i class="fas fa-users"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('serviceModal')">Annuler</button>
+      <button class="btn btn-primary" onclick="saveService()"><i class="fas fa-save"></i> Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Gallery -->
+<div class="modal-backdrop" id="galleryModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Ajouter une photo</h3>
+      <button class="modal-close" onclick="closeModal('galleryModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Photo</label>
+        <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Cliquez pour choisir une image (JPG, PNG — max 15 Mo)</p>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" onchange="previewFile(this)"/>
+        <img id="uploadPreview" class="preview-img" style="display:none"/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Étiquette (FR)</label>
+          <input type="text" id="galLabelFr" placeholder="Look soirée"/>
+        </div>
+        <div class="form-group">
+          <label>Étiquette (EN)</label>
+          <input type="text" id="galLabelEn" placeholder="Evening look"/>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('galleryModal')">Annuler</button>
+      <button class="btn btn-primary" onclick="uploadPhoto()"><i class="fas fa-upload"></i> Ajouter</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+const API = '';
+let token = localStorage.getItem('admin_token') || '';
+
+// ── Auth ────────────────────────────────────────────────────────────────────
+async function login() {
+  const pwd = document.getElementById('pwdInput').value;
+  const r = await fetch(`${API}/api/auth/login`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ password: pwd })
+  });
+  if (r.ok) {
+    const d = await r.json();
+    token = d.token;
+    localStorage.setItem('admin_token', token);
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadAll();
+  } else {
+    document.getElementById('loginError').textContent = 'Mot de passe incorrect.';
+  }
+}
+
+async function logout() {
+  await fetch(`${API}/api/auth/logout`, { method:'POST', headers:{ Authorization:`Bearer ${token}` }});
+  localStorage.removeItem('admin_token');
+  location.reload();
+}
+
+function authHeaders() {
+  return { 'Content-Type':'application/json', Authorization:`Bearer ${token}` };
+}
+
+// Check existing token
+if (token) {
+  fetch(`${API}/api/admin/reviews`, { headers:{ Authorization:`Bearer ${token}` }})
+    .then(r => {
+      if (r.ok) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+        loadAll();
+      } else { localStorage.removeItem('admin_token'); token = ''; }
+    }).catch(() => {});
+}
+
+// ── Navigation ───────────────────────────────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(`page-${name}`).classList.add('active');
+  event.currentTarget?.classList.add('active');
+  if (name === 'reviews') loadReviews();
+  if (name === 'services') loadServices();
+  if (name === 'gallery') loadGallery();
+}
+
+// ── Toast ────────────────────────────────────────────────────────────────────
+function toast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── Load all ─────────────────────────────────────────────────────────────────
+function loadAll() { loadDashboard(); loadServices(); loadGallery(); loadReviews(); }
+
+// ── Dashboard ─────────────────────────────────────────────────────────────────
+async function loadDashboard() {
+  const [svcs, gal, revs] = await Promise.all([
+    fetch(`${API}/api/services`).then(r=>r.json()),
+    fetch(`${API}/api/gallery`).then(r=>r.json()),
+    fetch(`${API}/api/admin/reviews`, { headers:{ Authorization:`Bearer ${token}` }}).then(r=>r.json()),
+  ]);
+  const pending = revs.filter(r => !r.approved);
+  const badge = document.getElementById('pendingBadge');
+  if (pending.length > 0) { badge.style.display=''; badge.textContent = pending.length; }
+  else badge.style.display = 'none';
+
+  document.getElementById('dashStats').innerHTML = `
+    <div class="stat-card"><div class="num">${svcs.length}</div><div class="lbl">Services</div></div>
+    <div class="stat-card"><div class="num">${gal.length}</div><div class="lbl">Photos galerie</div></div>
+    <div class="stat-card"><div class="num">${revs.filter(r=>r.approved).length}</div><div class="lbl">Avis approuvés</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--warn)">${pending.length}</div><div class="lbl">En attente</div></div>
+  `;
+
+  const dp = document.getElementById('dashPending');
+  if (!pending.length) { dp.innerHTML='<p style="color:var(--gris);font-size:.88rem;">Aucun avis en attente.</p>'; return; }
+  dp.innerHTML = pending.map(r => reviewCardHTML(r, true)).join('');
+}
+
+// ── Services ──────────────────────────────────────────────────────────────────
+async function loadServices() {
+  const svcs = await fetch(`${API}/api/services`).then(r=>r.json());
+  document.getElementById('servicesTable').innerHTML = svcs.map(s => `
+    <tr>
+      <td><i class="${s.icon}" style="color:var(--rose);font-size:1.1rem"></i></td>
+      <td><strong>${s.title_fr}</strong></td>
+      <td>${s.title_en}</td>
+      <td><strong>${s.price}</strong></td>
+      <td>
+        <div class="actions">
+          <button class="btn btn-ghost btn-sm" onclick='openServiceModal(${JSON.stringify(s)})'>
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn btn-danger btn-sm" onclick="deleteService('${s.id}','${s.title_fr}')">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+let editingServiceId = null;
+function openServiceModal(s = null) {
+  editingServiceId = s?.id || null;
+  document.getElementById('serviceModalTitle').textContent = s ? 'Modifier le service' : 'Nouveau service';
+  document.getElementById('svcId').value      = s?.id || '';
+  document.getElementById('svcTitleFr').value = s?.title_fr || '';
+  document.getElementById('svcTitleEn').value = s?.title_en || '';
+  document.getElementById('svcDescFr').value  = s?.desc_fr  || '';
+  document.getElementById('svcDescEn').value  = s?.desc_en  || '';
+  document.getElementById('svcTagFr').value   = s?.tag_fr   || '';
+  document.getElementById('svcTagEn').value   = s?.tag_en   || '';
+  document.getElementById('svcPrice').value   = s?.price    || '';
+  document.getElementById('svcIcon').value    = s?.icon     || 'fas fa-star';
+  document.querySelectorAll('.icon-opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById('serviceModal').classList.add('open');
+}
+function pickIcon(icon) {
+  document.getElementById('svcIcon').value = icon;
+  document.querySelectorAll('.icon-opt').forEach(o => o.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+}
+async function saveService() {
+  const body = {
+    icon:     document.getElementById('svcIcon').value,
+    title_fr: document.getElementById('svcTitleFr').value,
+    title_en: document.getElementById('svcTitleEn').value,
+    desc_fr:  document.getElementById('svcDescFr').value,
+    desc_en:  document.getElementById('svcDescEn').value,
+    tag_fr:   document.getElementById('svcTagFr').value,
+    tag_en:   document.getElementById('svcTagEn').value,
+    price:    document.getElementById('svcPrice').value,
+  };
+  const url    = editingServiceId ? `${API}/api/services/${editingServiceId}` : `${API}/api/services`;
+  const method = editingServiceId ? 'PUT' : 'POST';
+  const r = await fetch(url, { method, headers: authHeaders(), body: JSON.stringify(body) });
+  if (r.ok) { toast(editingServiceId ? 'Service mis à jour !' : 'Service ajouté !'); closeModal('serviceModal'); loadServices(); loadDashboard(); }
+  else toast('Erreur lors de la sauvegarde.', 'error');
+}
+async function deleteService(id, name) {
+  if (!confirm(`Supprimer "${name}" ?`)) return;
+  const r = await fetch(`${API}/api/services/${id}`, { method:'DELETE', headers: authHeaders() });
+  if (r.ok) { toast('Service supprimé.'); loadServices(); loadDashboard(); }
+  else toast('Erreur.','error');
+}
+
+// ── Gallery ───────────────────────────────────────────────────────────────────
+async function loadGallery() {
+  const gal = await fetch(`${API}/api/gallery`).then(r=>r.json());
+  document.getElementById('galleryGrid').innerHTML = gal.map(g => `
+    <div class="gallery-admin-item">
+      <img src="${g.filename}" alt="${g.label_fr}" loading="lazy"/>
+      <div class="label">${g.label_fr}</div>
+      <div class="overlay">
+        <button class="btn btn-danger btn-sm" onclick="deletePhoto('${g.id}')">
+          <i class="fas fa-trash"></i> Supprimer
+        </button>
+      </div>
+    </div>`).join('') || '<p style="color:var(--gris)">Aucune photo.</p>';
+}
+function openGalleryModal() {
+  document.getElementById('galLabelFr').value = '';
+  document.getElementById('galLabelEn').value = '';
+  document.getElementById('fileInput').value = '';
+  document.getElementById('uploadPreview').style.display = 'none';
+  document.getElementById('galleryModal').classList.add('open');
+}
+function previewFile(input) {
+  if (!input.files[0]) return;
+  const prev = document.getElementById('uploadPreview');
+  prev.src = URL.createObjectURL(input.files[0]);
+  prev.style.display = 'block';
+}
+async function uploadPhoto() {
+  const file = document.getElementById('fileInput').files[0];
+  if (!file) { toast('Veuillez choisir une photo.','error'); return; }
+  const fd = new FormData();
+  fd.append('image', file);
+  fd.append('label_fr', document.getElementById('galLabelFr').value);
+  fd.append('label_en', document.getElementById('galLabelEn').value);
+  const r = await fetch(`${API}/api/gallery`, {
+    method:'POST', headers:{ Authorization:`Bearer ${token}` }, body: fd
+  });
+  if (r.ok) { toast('Photo ajoutée !'); closeModal('galleryModal'); loadGallery(); loadDashboard(); }
+  else toast('Erreur upload.','error');
+}
+async function deletePhoto(id) {
+  if (!confirm('Supprimer cette photo ?')) return;
+  const r = await fetch(`${API}/api/gallery/${id}`, { method:'DELETE', headers: authHeaders() });
+  if (r.ok) { toast('Photo supprimée.'); loadGallery(); loadDashboard(); }
+  else toast('Erreur.','error');
+}
+
+// ── Reviews ───────────────────────────────────────────────────────────────────
+async function loadReviews() {
+  const revs = await fetch(`${API}/api/admin/reviews`, { headers:{ Authorization:`Bearer ${token}` }}).then(r=>r.json());
+  const pending  = revs.filter(r => !r.approved);
+  const approved = revs.filter(r =>  r.approved);
+
+  document.getElementById('pendingReviews').innerHTML =
+    pending.length ? pending.map(r => reviewCardHTML(r, false)).join('') : '<p style="color:var(--gris);font-size:.85rem">Aucun avis en attente.</p>';
+
+  document.getElementById('approvedReviews').innerHTML =
+    approved.length ? approved.map(r => reviewCardHTML(r, false)).join('') : '<p style="color:var(--gris);font-size:.85rem">Aucun avis approuvé.</p>';
+
+  const badge = document.getElementById('pendingBadge');
+  badge.style.display = pending.length ? '' : 'none';
+  badge.textContent = pending.length;
+}
+function reviewCardHTML(r, compact) {
+  const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+  return `
+  <div class="review-card ${r.approved ? 'approved':'pending'}">
+    <div class="review-meta">
+      <div>
+        <div class="review-name">${r.name} <span class="review-loc">· ${r.location||''}</span></div>
+        <div class="stars-display">${stars}</div>
+      </div>
+      <span class="status-badge ${r.approved ? 'approved':'pending'}">${r.approved ? 'Approuvé':'En attente'}</span>
+    </div>
+    <div class="review-text">"${r.text}"</div>
+    <div class="actions">
+      <button class="btn btn-sm ${r.approved ? 'btn-warn':'btn-success'}" onclick="toggleApprove('${r.id}')">
+        <i class="fas fa-${r.approved ? 'eye-slash':'check'}"></i> ${r.approved ? 'Désapprouver':'Approuver'}
+      </button>
+      <button class="btn btn-danger btn-sm" onclick="deleteReview('${r.id}')">
+        <i class="fas fa-trash"></i> Supprimer
+      </button>
+    </div>
+  </div>`;
+}
+async function toggleApprove(id) {
+  const r = await fetch(`${API}/api/reviews/${id}/approve`, { method:'PUT', headers: authHeaders() });
+  if (r.ok) { toast('Statut mis à jour !'); loadReviews(); loadDashboard(); }
+  else toast('Erreur.','error');
+}
+async function deleteReview(id) {
+  if (!confirm('Supprimer cet avis ?')) return;
+  const r = await fetch(`${API}/api/reviews/${id}`, { method:'DELETE', headers: authHeaders() });
+  if (r.ok) { toast('Avis supprimé.'); loadReviews(); loadDashboard(); }
+  else toast('Erreur.','error');
+}
+
+// ── Modal helpers ─────────────────────────────────────────────────────────────
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-backdrop').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+</script>
+</body>
+</html>

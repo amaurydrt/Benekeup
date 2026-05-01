@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "Sarah M.",
+    "location": "Mariée — Montréal",
+    "text": "Bénédicte est incroyable ! Elle a sublimé mon look pour mon mariage. Le maquillage a tenu toute la journée malgré mes larmes de joie. Je la recommande à 100% !",
+    "rating": 5,
+    "approved": true,
+    "date": "2026-01-15"
+  },
+  {
+    "id": "2",
+    "name": "Amina K.",
+    "location": "Soirée Gala — Sherbrooke",
+    "text": "Service impeccable et professionnel. Bénédicte est venue directement chez moi avant ma soirée de gala. Un look parfait, exactement ce que je voulais !",
+    "rating": 5,
+    "approved": true,
+    "date": "2026-02-03"
+  },
+  {
+    "id": "3",
+    "name": "Clara D.",
+    "location": "Shooting Photo — Granby",
+    "text": "Pour mon shooting photo, Bénédicte a créé un maquillage parfait pour la lumière. Les photos sont magnifiques, je suis très satisfaite du résultat !",
+    "rating": 5,
+    "approved": true,
+    "date": "2026-03-10"
+  }
+]
