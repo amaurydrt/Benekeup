@@ -11,6 +11,10 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'benekeup2026';
 app.use(express.json());
 app.use(express.static(__dirname));
 
+// Routes HTML explicites
+app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'admin.html')));
+app.get('/',      (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+
 // ── Dossiers ────────────────────────────────────────────────────────────────
 const DATA_DIR    = path.join(__dirname, 'data');
 const UPLOADS_DIR = path.join(__dirname, 'uploads');
